@@ -61,6 +61,87 @@
 		  <artifactId>mysql-connector-java</artifactId>
 		  <version>5.1.34</version>
 	    </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.34</version>
+        </dependency>
+
+        <!-- |||||| DEPENDENCIES FOR HIBERNATE |||||| -->
+
+        <!-- ########### HIBERNATE-C3P0 ############ -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-c3p0</artifactId>
+            <version>4.0.1.Final</version>
+        </dependency>
+
+        <!-- ############### C3P0 ################## -->
+        <dependency>
+            <artifactId>c3p0</artifactId>
+            <groupId>c3p0</groupId>
+            <type>jar</type>
+            <version>0.9.1</version>
+        </dependency>
+
+        <!-- ########### HIBERNATE CORE ############ -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>4.0.1.Final</version>
+        </dependency>
+
+        <!-- ########### HIBERNATE ANTLR ########### -->
+        <dependency>
+            <artifactId>antlr</artifactId>
+            <groupId>antlr</groupId>
+            <type>jar</type>
+            <version>2.7.7</version>
+        </dependency>
+
+        <!-- ######### COMMONS-COLLECTIONS ######### -->
+        <dependency>
+            <artifactId>commons-collections</artifactId>
+            <groupId>commons-collections</groupId>
+            <type>jar</type>
+            <version>3.2.1</version>
+        </dependency>
+
+        <!-- ############### DOM4J ################# -->
+        <dependency>
+            <artifactId>dom4j</artifactId>
+            <groupId>dom4j</groupId>
+            <type>jar</type>
+            <version>1.6.1</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>xml-apis</artifactId>
+                    <groupId>xml-apis</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- #### HIBERNATE-COMMONS-ANNOTATIONS #### -->
+        <dependency>
+            <artifactId>hibernate-commons-annotations</artifactId>
+            <groupId>org.hibernate.common</groupId>
+            <type>jar</type>
+            <version>4.0.1.Final</version>
+        </dependency>
+
+        <!-- ############# HIBERNATE-JPA ########### -->
+        <dependency>
+            <artifactId>hibernate-jpa-2.0-api</artifactId>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <type>jar</type>
+            <version>1.0.1.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>7.0</version>
+        </dependency>
   </dependencies>
   <build>
     <finalName>HotelMangementSystem</finalName>
@@ -71,81 +152,6 @@
 		  <version>1.5</version>
 		  <dependencies>
 			  <!-- specify the dependent jdbc driver here -->
-			  <dependency>
-				  <groupId>mysql</groupId>
-				  <artifactId>mysql-connector-java</artifactId>
-				  <version>5.1.34</version>
-			  </dependency>
-
-			  <!-- |||||| DEPENDENCIES FOR HIBERNATE |||||| -->
-
-			  <!-- ########### HIBERNATE-C3P0 ############ -->
-			  <dependency>
-				  <groupId>org.hibernate</groupId>
-				  <artifactId>hibernate-c3p0</artifactId>
-				  <version>4.0.1.Final</version>
-			  </dependency>
-
-			  <!-- ############### C3P0 ################## -->
-			  <dependency>
-				  <artifactId>c3p0</artifactId>
-				  <groupId>c3p0</groupId>
-				  <type>jar</type>
-				  <version>0.9.1</version>
-			  </dependency>
-
-			  <!-- ########### HIBERNATE CORE ############ -->
-			  <dependency>
-				  <groupId>org.hibernate</groupId>
-				  <artifactId>hibernate-core</artifactId>
-				  <version>4.0.1.Final</version>
-			  </dependency>
-
-			  <!-- ########### HIBERNATE ANTLR ########### -->
-			  <dependency>
-				  <artifactId>antlr</artifactId>
-				  <groupId>antlr</groupId>
-				  <type>jar</type>
-				  <version>2.7.7</version>
-			  </dependency>
-
-			  <!-- ######### COMMONS-COLLECTIONS ######### -->
-			  <dependency>
-				  <artifactId>commons-collections</artifactId>
-				  <groupId>commons-collections</groupId>
-				  <type>jar</type>
-				  <version>3.2.1</version>
-			  </dependency>
-
-			  <!-- ############### DOM4J ################# -->
-			  <dependency>
-				  <artifactId>dom4j</artifactId>
-				  <groupId>dom4j</groupId>
-				  <type>jar</type>
-				  <version>1.6.1</version>
-				  <exclusions>
-					  <exclusion>
-						  <artifactId>xml-apis</artifactId>
-						  <groupId>xml-apis</groupId>
-					  </exclusion>
-				  </exclusions>
-			  </dependency>
-
-			  <!-- #### HIBERNATE-COMMONS-ANNOTATIONS #### -->
-			  <dependency>
-				  <artifactId>hibernate-commons-annotations</artifactId>
-				  <groupId>org.hibernate.common</groupId>
-				  <type>jar</type>
-				  <version>4.0.1.Final</version>
-			  </dependency>
-
-			  <!-- ############# HIBERNATE-JPA ########### -->
-			  <dependency>
-				  <artifactId>hibernate-jpa-2.0-api</artifactId>
-				  <groupId>org.hibernate.javax.persistence</groupId>
-				  <type>jar</type>
-				  <version>1.0.1.Final</version>
-			  </dependency>
 
 		  </dependencies>
 		  <!-- common configuration shared by all executions -->
