@@ -69,28 +69,22 @@
         </dependency>
 
         <!-- |||||| DEPENDENCIES FOR HIBERNATE |||||| -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.11</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.2.16.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>5.2.16.Final</version>
+		</dependency>
 
-        <!-- ########### HIBERNATE-C3P0 ############ -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-c3p0</artifactId>
-            <version>4.0.1.Final</version>
-        </dependency>
-
-        <!-- ############### C3P0 ################## -->
-        <dependency>
-            <artifactId>c3p0</artifactId>
-            <groupId>c3p0</groupId>
-            <type>jar</type>
-            <version>0.9.1</version>
-        </dependency>
-
-        <!-- ########### HIBERNATE CORE ############ -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>4.0.1.Final</version>
-        </dependency>
 
         <!-- ########### HIBERNATE ANTLR ########### -->
         <dependency>
