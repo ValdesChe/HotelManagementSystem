@@ -1,2 +1,2 @@
-# Hotel Mangement System
-Hotel mangement system with Java EE with multiple roles
+# Hotel Management System
+Hotel management system with Java EE with multiple roles
