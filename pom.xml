@@ -2,10 +2,10 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   	<modelVersion>4.0.0</modelVersion>
   	<groupId>ma.alphahotel</groupId>
-  	<artifactId>HotelMangementSystem</artifactId>
+  	<artifactId>HotelManagementSystem</artifactId>
   	<packaging>war</packaging>
   	<version>1.0-SNAPSHOT</version>
-  	<name>HotelMangementSystem Maven Webapp</name>
+  	<name>HotelManagementSystem Maven Webapp</name>
 	<properties>
 		<jsf.version>2.1.7</jsf.version>
 		<jstl.version>1.2</jstl.version>
@@ -56,23 +56,12 @@
 			<artifactId>el-ri</artifactId>
 			<version>1.0</version>
 		</dependency>
-	    <dependency>
-		  <groupId>mysql</groupId>
-		  <artifactId>mysql-connector-java</artifactId>
-		  <version>5.1.34</version>
-	    </dependency>
-
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.34</version>
-        </dependency>
 
         <!-- |||||| DEPENDENCIES FOR HIBERNATE |||||| -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.11</version>
+			<version>5.1.34</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -138,7 +127,7 @@
         </dependency>
   </dependencies>
   <build>
-    <finalName>HotelMangementSystem</finalName>
+    <finalName>HotelManagementSystem</finalName>
   	<plugins>
 	  <plugin>
 		  <groupId>org.codehaus.mojo</groupId>
@@ -146,7 +135,11 @@
 		  <version>1.5</version>
 		  <dependencies>
 			  <!-- specify the dependent jdbc driver here -->
-
+			  <dependency>
+				  <groupId>mysql</groupId>
+				  <artifactId>mysql-connector-java</artifactId>
+				  <version>5.1.34</version>
+			  </dependency>
 		  </dependencies>
 		  <!-- common configuration shared by all executions -->
 		  <configuration>
