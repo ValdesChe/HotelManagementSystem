@@ -1,4 +1,4 @@
-package utils;
+package com.alphahotel.utils;
 
 import org.hibernate.Session;
 
