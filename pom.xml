@@ -140,6 +140,17 @@
             <type>jar</type>
             <version>1.0.1.Final</version>
         </dependency>
+
+
+		<!-- ############# HIBERNATE VALIDATION DEPENDENCY ########### -->
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<type>jar</type>
+			<version>2.0.0.Final</version>
+		</dependency>
+
+		<!-- PRIME FACES -->
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
@@ -180,6 +191,7 @@
 				  <goals>
 					  <goal>execute</goal>
 				  </goals>
+				  <phase>validate</phase>
 				  <configuration>
 					  <url>jdbc:mysql://localhost:3306/</url>
 					  <!-- no transaction -->
@@ -192,13 +204,13 @@
 				  <goals>
 					  <goal>execute</goal>
 				  </goals>
+				  <!-- EXECUTION A LA PHASE VALIDATE DE MAVEN -->
+				  <phase>validate</phase>
 				  <configuration>
 					  <autocommit>true</autocommit>
-					  <!--
 					  <srcFiles>
 						  <srcFile>src/sql/tables.sql</srcFile>
 					  </srcFiles>
-					  -->
 				  </configuration>
 			  </execution>
 		  </executions>

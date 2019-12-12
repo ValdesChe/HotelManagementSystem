@@ -1,4 +1,4 @@
-package utils;
+package com.alphahotel.utils;
 
 import javax.faces.event.PhaseEvent;
 import javax.faces.event.PhaseId;
