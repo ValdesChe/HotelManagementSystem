@@ -7,6 +7,10 @@ import org.hibernate.service.ServiceRegistryBuilder;
 
 /**
  * Created by ValdoR on 2019-12-11.
+ *
+ * Une classe Hibernate appellée SessionFactory permet à partir du fichier de configuration
+ (hibernate.cfg.xml) d'être associé à la source de données. Elle fournit des objets Session pour
+ manipuler les données.
  */
 
 public class HibernateUtils {

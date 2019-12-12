@@ -2,7 +2,6 @@ package com.alphahotel.controller;
 
 import com.alphahotel.utils.FacesContextUtil;
 import com.alphahotel.utils.JSFMessageUtil;
-import com.sun.xml.internal.ws.client.RequestContext;
 
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
