@@ -21,7 +21,7 @@ public class FacesContextUtil {
         return (Session)FacesContext.getCurrentInstance().getExternalContext().getRequestMap().get(HIBERNATE_SESSION);
     }
 
-    public HttpServletRequest getRequest() {
+    public static HttpServletRequest getRequest() {
         return (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
     }
 }

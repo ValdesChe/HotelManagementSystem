@@ -150,12 +150,15 @@
 		</dependency>
 
 		<!-- PRIME FACES -->
+        <!--
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
             <version>7.0</version>
         </dependency>
-  </dependencies>
+        -->
+
+	</dependencies>
    <build>
 	   <plugins>
 		   <plugin>

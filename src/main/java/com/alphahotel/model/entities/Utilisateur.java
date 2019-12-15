@@ -132,6 +132,16 @@ public class Utilisateur implements Serializable {
         this.updated_at = updated_at;
     }
 
+    public boolean isComptable(){
+        return role.equals(Role.COMPTABLE);
+    }
+    public boolean isCommercial(){
+        return role.equals(Role.COMPTABLE);
+    }
+    public boolean isAdministrateur(){
+        return role.equals(Role.COMPTABLE);
+    }
+
     @Override
     public int hashCode() {
         int hash = 5;
