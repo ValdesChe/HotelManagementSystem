@@ -30,7 +30,7 @@ public class UtilisateurController extends AbstractController {
     }
 
     public String admin(){
-        return "/pages/protected/admin/commercial.xhtml?faces-redirect=true";
+        return "/pages/protected/admin/admin.xhtml?faces-redirect=true";
     }
 
     public String commercial(){

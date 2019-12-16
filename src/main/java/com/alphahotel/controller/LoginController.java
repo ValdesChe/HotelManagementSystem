@@ -67,10 +67,6 @@ public class LoginController extends AbstractController {
         Utilisateur utilisateur = isValidLogin(loginOrEmail, password);
 
         if (utilisateur != null) {
-            System.out.println("===============================");
-            System.out.println("CONNECTED : " + utilisateur.getRole() + utilisateur.isAdministrateur());
-            System.out.println("===============================");
-
             utilisateurController.setUtilisateur(utilisateur);
             FacesContextUtil.getRequest().getSession().setAttribute("utilisateur", utilisateur);
             if (utilisateur.isCommercial())
