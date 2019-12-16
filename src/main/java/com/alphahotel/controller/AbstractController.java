@@ -1,10 +1,12 @@
 package com.alphahotel.controller;
 
+import com.alphahotel.model.entities.Role;
 import com.alphahotel.utils.FacesContextUtil;
 import com.alphahotel.utils.JSFMessageUtil;
 
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
+
 
 /**
  * Created by ValdoR on 2019-12-12.
@@ -25,7 +27,6 @@ public class AbstractController {
         JSFMessageUtil jsfmu = new JSFMessageUtil();
         jsfmu.sendInfoMessage(message);
     }
-
 
 
 }

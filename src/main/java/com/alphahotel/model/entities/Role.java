@@ -6,5 +6,5 @@ package com.alphahotel.model.entities;
 public enum Role {
     ADMIN,
     COMMERCIAL,
-    COMPTABLE;
+    COMPTABLE
 }
