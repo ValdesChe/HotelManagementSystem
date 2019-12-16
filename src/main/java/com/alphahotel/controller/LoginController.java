@@ -65,7 +65,9 @@ public class LoginController extends AbstractController {
 
     public String seConnecter() {
         Utilisateur utilisateur = isValidLogin(loginOrEmail, password);
-
+        System.out.println("===============================");
+        System.out.println("asdddddddddd");
+        System.out.println("===============================");
         if (utilisateur != null) {
             utilisateurController.setUtilisateur(utilisateur);
             FacesContextUtil.getRequest().getSession().setAttribute("utilisateur", utilisateur);
