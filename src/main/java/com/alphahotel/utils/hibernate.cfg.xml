@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- Related to mapping START-->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/alphahotel?zeroDateTimeBehavior=convertToNull</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password" />
+        <!-- Related to the mapping END -->
+        <property name="hibernate.connection.pool_size">10</property>
+        <property name="show_sql">true</property>
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+
+        <!-- Enable Hibernate's automatic session context management -->
+        <property name="current_session_context_class">thread</property>
+
+        <!--  Caching -->
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+        <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+
+        <property name="javax.persistence.validation.mode">none</property>
+        <!-- Related to hibernate properties START -->
+        <property name="hibernate.show_sql">false</property>
+        <!-- Related to hibernate properties END-->
+
+        <!-- Related to mapping START -->
+        <mapping class="com.alphahotel.model.entities.Utilisateur"/>
+        <!-- Related to the mapping END -->
+
+    </session-factory>
+</hibernate-configuration>

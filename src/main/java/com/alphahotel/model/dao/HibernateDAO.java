@@ -2,8 +2,12 @@ package com.alphahotel.model.dao;
 
 import java.io.Serializable;
 import java.util.List;
+
+import com.alphahotel.utils.HibernateUtils;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.DetachedCriteria;
 /**
  * Created by ValdoR on 2019-12-11.
@@ -12,12 +16,14 @@ public class HibernateDAO<T> implements InterfaceDAO<T>, Serializable {
     private static final long serialVersionUID = 1L;
 
     private Class<T> classe;
-    private Session session;
+    private Session session = null;
+    private Transaction transaction = null;
 
-    public HibernateDAO(Class<T> classe, Session session) {
+    public HibernateDAO(Class<T> classe) {
         super();
         this.classe = classe;
-        this.session = session;
+        this.session = HibernateUtils.getSessionFactory().openSession();
+        transaction = session.beginTransaction();
     }
 
     @Override
@@ -69,4 +75,13 @@ public class HibernateDAO<T> implements InterfaceDAO<T>, Serializable {
         List<T> enties = (List<T>) session.createCriteria(classe).list();
         return enties;
     }
+
+    public Session getSession() {
+        return session;
+    }
+
+    public void setSession(Session session) {
+        this.session = session;
+    }
+
 }

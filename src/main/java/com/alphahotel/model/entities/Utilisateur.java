@@ -19,7 +19,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "utilisateur")
-@XmlRootElement
 @NamedQueries({
         @NamedQuery(name = "Utilisateur.findByLogin", query = "SELECT u FROM Utilisateur u WHERE u.login = :login"),
         @NamedQuery(name = "Utilisateur.findByEmail", query = "SELECT u FROM Utilisateur u WHERE u.email = :email")})
@@ -133,13 +132,13 @@ public class Utilisateur implements Serializable {
     }
 
     public boolean isComptable(){
-        return role.equals(Role.COMPTABLE);
+        return this.getRole() == Role.COMPTABLE;
     }
     public boolean isCommercial(){
-        return role.equals(Role.COMPTABLE);
+        return this.getRole() == Role.COMMERCIAL;
     }
     public boolean isAdministrateur(){
-        return role.equals(Role.COMPTABLE);
+        return this.getRole() == Role.ADMIN;
     }
 
     @Override

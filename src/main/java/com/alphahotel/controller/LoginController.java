@@ -65,19 +65,21 @@ public class LoginController extends AbstractController {
 
     public String seConnecter() {
         Utilisateur utilisateur = isValidLogin(loginOrEmail, password);
-        System.out.println("===============================");
-        System.out.println("asdddddddddd");
-        System.out.println("===============================");
+
         if (utilisateur != null) {
+            System.out.println("===============================");
+            System.out.println("CONNECTED : " + utilisateur.getRole() + utilisateur.isAdministrateur());
+            System.out.println("===============================");
+
             utilisateurController.setUtilisateur(utilisateur);
             FacesContextUtil.getRequest().getSession().setAttribute("utilisateur", utilisateur);
             if (utilisateur.isCommercial())
                 return utilisateurController.commercial();
 
-            if (utilisateur.isCommercial())
-                return utilisateurController.commercial();
+            if (utilisateur.isComptable())
+                return utilisateurController.comptable();
 
-            if (utilisateur.isCommercial())
+            if (utilisateur.isAdministrateur())
                 return utilisateurController.admin();
 
             return "index.xhtml";
