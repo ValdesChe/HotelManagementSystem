@@ -24,11 +24,11 @@ public class LoginFilter extends AbstractFilter implements Filter {
 
         HttpSession session = request.getSession();
         Utilisateur user = (Utilisateur) session.getAttribute("utilisateur");
-        if(session.isNew()  || user == null){
+        if( user == null){
             doLogin(req, resp, request);
             return;
         }
-        chain.doFilter(req, resp);
+        chain.doFilter(req, response);
     }
 
     public void init(FilterConfig config) throws ServletException {

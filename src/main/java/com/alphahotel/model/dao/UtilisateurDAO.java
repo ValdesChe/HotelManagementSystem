@@ -4,6 +4,8 @@ import com.alphahotel.model.entities.Utilisateur;
 import com.alphahotel.utils.HibernateUtils;
 import org.hibernate.Query;
 
+import java.util.List;
+
 /**
  * Created by ValdoR on 2019-12-12.
  */
@@ -11,7 +13,6 @@ public class UtilisateurDAO extends HibernateDAO<Utilisateur>{
 
     public UtilisateurDAO() {
         super(Utilisateur.class);
-
     }
 
     public Utilisateur findByLogin(String login){

@@ -48,6 +48,10 @@ public class Utilisateur implements Serializable {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private UtilisateurStatus status;
+
 
     @Column(name = "created_at")
     private Date created_at;
@@ -129,6 +133,14 @@ public class Utilisateur implements Serializable {
 
     public void setUpdated_at(Date updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public UtilisateurStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(UtilisateurStatus status) {
+        this.status = status;
     }
 
     public boolean isComptable(){

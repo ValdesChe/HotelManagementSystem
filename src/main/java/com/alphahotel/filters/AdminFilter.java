@@ -27,6 +27,7 @@ public class AdminFilter extends AbstractFilter implements Filter {
                 return;
             }
         }
+
         chain.doFilter(req, resp);
     }
 
