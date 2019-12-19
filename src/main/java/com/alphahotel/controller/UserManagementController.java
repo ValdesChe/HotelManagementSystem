@@ -3,7 +3,9 @@ package com.alphahotel.controller;
 import com.alphahotel.model.dao.UtilisateurDAO;
 import com.alphahotel.model.entities.Role;
 import com.alphahotel.model.entities.Utilisateur;
+import com.alphahotel.model.entities.UtilisateurStatus;
 import com.alphahotel.utils.Constants;
+import com.alphahotel.utils.ConverterSHA1;
 import com.alphahotel.utils.FacesContextUtil;
 import com.alphahotel.utils.JSFMessageUtil;
 
@@ -32,6 +34,7 @@ public class UserManagementController extends AbstractController  implements Ser
     private List<Utilisateur> utilisateurList = new ArrayList();
     private Utilisateur newUtilisateur= new Utilisateur();
     private Utilisateur selectedUtilisateur= new Utilisateur();
+    private String password_confirm = "";
 
 
     public UserManagementController() {
@@ -39,6 +42,8 @@ public class UserManagementController extends AbstractController  implements Ser
         fetchAccountStatusList();
         fetchUtilisateurList();
         newUtilisateur.setRole(Role.COMMERCIAL.toString());
+        newUtilisateur.setPassword(Constants.DEFAULT_PASSWORD);
+        newUtilisateur.setStatus(UtilisateurStatus.ACTIVE.toString());
     }
 
     public Utilisateur getSelectedUtilisateur() {
@@ -142,5 +147,37 @@ public class UserManagementController extends AbstractController  implements Ser
             displayErrorMessage("Une erreur est survenue lors de la mise à jour !");
         }
         return null;
+    }
+
+    public String insertUtilisateur() {
+        UtilisateurDAO utilisateurDAO =new UtilisateurDAO();
+        newUtilisateur.setPassword(ConverterSHA1.cipher(newUtilisateur.getPassword()));
+        if (newUtilisateur.getPassword() == null ?
+                password_confirm == null : newUtilisateur.getPassword().equalsIgnoreCase(ConverterSHA1.cipher(password_confirm)) ) {
+            try {
+                newUtilisateur.setCreated_at(Date.from(Instant.now()));
+                newUtilisateur.setUpdated_at(Date.from(Instant.now()));
+                utilisateurDAO.save(newUtilisateur);
+                fetchUtilisateurList();
+                displayInfoMessage("Utilisateur créé avec succès !");
+                newUtilisateur = new Utilisateur();
+            }
+            catch (Exception e){
+                displayErrorMessage("Une erreur est survenue lors de la création du compte!");
+            }
+        } else {
+            displayErrorMessage("Mot de passe invalide !");
+
+        }
+
+        return null;
+    }
+
+    public void setPassword_confirm(String password_confirm) {
+        this.password_confirm = password_confirm;
+    }
+
+    public String getPassword_confirm() {
+        return password_confirm;
     }
 }

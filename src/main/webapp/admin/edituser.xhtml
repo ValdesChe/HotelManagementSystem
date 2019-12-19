@@ -68,13 +68,13 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="roleSelect" >Role = #{userManagerController.selectedUtilisateur.role}:</label>
-                                <h:selectOneMenu class="form-control" id="roleSelect" name="#{userManagerController.selectedUtilisateur.role}">
+                                <h:selectOneMenu class="form-control" id="roleSelect" value="#{userManagerController.selectedUtilisateur.role}" name="#{userManagerController.selectedUtilisateur.role}">
                                     <f:selectItems value="#{userManagerController.rolesList}" />
                                 </h:selectOneMenu>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="statusSelect" >Status du compte = #{userManagerController.selectedUtilisateur.status}:</label>
-                                <h:selectOneMenu class="form-control" id="statusSelect" name="#{userManagerController.selectedUtilisateur.status}">
+                                <h:selectOneMenu class="form-control" id="statusSelect" value="#{userManagerController.selectedUtilisateur.status}" name="#{userManagerController.selectedUtilisateur.status}">
                                     <f:selectItems value="#{userManagerController.acountStatusList}" />
                                 </h:selectOneMenu>
                             </div>
