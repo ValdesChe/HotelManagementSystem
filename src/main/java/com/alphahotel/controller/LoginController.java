@@ -4,6 +4,7 @@ import com.alphahotel.model.dao.HibernateDAO;
 import com.alphahotel.model.dao.UtilisateurDAO;
 import com.alphahotel.model.entities.Role;
 import com.alphahotel.model.entities.Utilisateur;
+import com.alphahotel.utils.ConverterSHA1;
 import com.alphahotel.utils.FacesContextUtil;
 
 import javax.faces.bean.ManagedBean;
@@ -54,7 +55,7 @@ public class LoginController extends AbstractController {
             utilisateur = new UtilisateurDAO().findByLogin(loginOrEmail);
         }
 
-        if (utilisateur == null || !password.equals(utilisateur.getPassword())) {
+        if (utilisateur == null || !ConverterSHA1.cipher(password).equalsIgnoreCase((utilisateur.getPassword())) ) {
             return null;
         }
         return utilisateur;
