@@ -1642,14 +1642,25 @@ footer .credits {
     color: #ffffff;
 }
 
-.btn.btn-b-n {
+.btn.btn-b-reservate {
     background-color: #2eca6a;
     color: #ffffff;
     border-radius: 0;
 }
 
-.btn.btn-b-n:hover {
+.btn.btn-b-reservate:hover {
     background-color: #26a356;
+    color: #ffffff;
+}
+
+.btn.btn-b-logout {
+    background-color: #caa707;
+    color: #ffffff;
+    border-radius: 0;
+}
+
+.btn.btn-b-logout:hover {
+    background-color: #caa707;
     color: #ffffff;
 }
 

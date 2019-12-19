@@ -87,4 +87,10 @@ public class LoginController extends AbstractController {
         return null;
     }
 
+
+    public String seDeconnecter(){
+        FacesContextUtil.getRequest().getSession().invalidate();
+        return "/login.xhtml?faces-redirect=true";
+    }
+
 }

@@ -55,8 +55,6 @@
 
         <!--/ Nav Star /-->
         <nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
-
-            <div class="container">
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
                     aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
                 <span/>
@@ -80,7 +78,11 @@
                     </li>
                 </ul>
             </div>
-            </div>
+            <h:form>
+                <h:commandLink action="#{loginController.seDeconnecter}" type="button" class="btn btn-b-logout navbar-toggle-box-collapse d-none d-md-block">
+                    <span class="fa fa-sign-out" aria-hidden="true"/> Deconnexion
+                </h:commandLink>
+            </h:form>
         </nav>
         <!--/ Nav End /-->
 

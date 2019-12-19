@@ -38,12 +38,6 @@ public class UtilisateurController extends AbstractController  implements Serial
         this.utilisateur = utilisateur;
     }
 
-    public String logOut(){
-        FacesContextUtil.getRequest().getSession().invalidate();
-        return "/login.xhtml?faces-redirect=true";
-    }
-
-
     public String admin(){
         return "/admin/welcome.xhtml?faces-redirect=true";
     }
