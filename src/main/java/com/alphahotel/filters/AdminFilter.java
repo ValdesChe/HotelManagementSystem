@@ -14,7 +14,7 @@ import java.io.IOException;
  * Created by ValdoR on 2019-12-16.
  */
 
-@WebFilter(urlPatterns = "/admin/*")
+
 public class AdminFilter extends AbstractFilter implements Filter {
     public void destroy() {
     }
@@ -26,21 +26,29 @@ public class AdminFilter extends AbstractFilter implements Filter {
 
             HttpSession session = request.getSession();
             Utilisateur user = (Utilisateur) session.getAttribute("utilisateur");
+
+            String reqURI = request.getRequestURI();
+            System.out.println("request URI = " + reqURI);
             if( session != null && user != null ){
-                if(user.isAdministrateur()){
+                System.out.println("++++++++++");
+                System.out.println("--- ADMIN FILTER DETECT USER-");
+                System.out.println("++++++++++");
+                if(user.isAdministrateur() && reqURI.contains("admin")){
                     chain.doFilter(req, resp);
                 }
-                else if(user.isCommercial()){
+                if(user.isCommercial()){
                     response.sendRedirect(request.getContextPath() + "/commercial/welcome.xhtml");
                 }
-                else if(user.isComptable()){
+                if(user.isComptable()){
                     response.sendRedirect(request.getContextPath() + "/comptable/welcome.xhtml");
                 }
-                else{
-                    accessDenied(req, resp, request);
-                }
+
             }else{
-                chain.doFilter(req, resp);
+
+                System.out.println("++++++++++");
+                System.out.println("--- CHAIN FILTER ON ADMIN-");
+                System.out.println("++++++++++");
+                doLogin(req, resp, request);
             }
         }
         catch (Exception e){

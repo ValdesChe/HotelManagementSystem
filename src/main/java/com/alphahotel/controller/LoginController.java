@@ -80,7 +80,7 @@ public class LoginController extends AbstractController {
             if (utilisateur.isAdministrateur())
                 return utilisateurController.admin();
 
-            return "index.xhtml?faces-redirect=true";
+            return "index.xhtml";
         }
         displayErrorMessage("Check your login/password");
         return null;

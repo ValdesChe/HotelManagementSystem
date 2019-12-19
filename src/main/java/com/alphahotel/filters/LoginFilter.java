@@ -13,7 +13,6 @@ import java.io.IOException;
  * Created by ValdoR on 2019-12-16.
  */
 
-@WebFilter(urlPatterns = "/login" )
 public class LoginFilter extends AbstractFilter implements Filter {
     public void destroy() {
     }
@@ -25,7 +24,13 @@ public class LoginFilter extends AbstractFilter implements Filter {
 
             HttpSession session = request.getSession();
             Utilisateur user = (Utilisateur) session.getAttribute("utilisateur");
+
             if( session != null && user != null ){
+
+                System.out.println("++++++++++");
+                System.out.println("--- LOGIN ** +-");
+                System.out.println("++++++++++");
+
                 if(user.isAdministrateur()){
                     response.sendRedirect(request.getContextPath() + "/admin/welcome.xhtml");
                 } else if(user.isCommercial()){
@@ -37,8 +42,10 @@ public class LoginFilter extends AbstractFilter implements Filter {
                 else{
                     doLogin(req, resp, request);
                 }
-                return;
             }else{
+                System.out.println("++++++++++");
+                System.out.println("--- CHAIN FILTER ON LOGIN-");
+                System.out.println("++++++++++");
                 chain.doFilter(req, resp);
             }
         }
