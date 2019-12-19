@@ -6,4 +6,5 @@ package com.alphahotel.utils;
 public class Constants
 {
     public static String[] roles = {"ADMIN", "COMMERCIAL", "COMPTABLE"};
+    public static String[] statusList = {"ACTIVE", "INACTIVE", "LOCKED"};
 }

@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="../resources/adminpage.xhtml">
+
+    <ui:define name="title">Alpha HOTEL | Bienvenue</ui:define>
+
+    <ui:define name="content">
+        <section class="intro-single">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-lg-8">
+                        <div class="title-single-box">
+                            <h1 class="title-single">Modification utilisateur !</h1>
+                            <span class="color-text-a">Editer les informations</span>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-4">
+                        <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="#">Accueil</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="#">Utilisateurs</a>
+                                </li>
+
+                                <li class="breadcrumb-item">
+                                    <a href="#">Editer</a>
+                                </li>
+
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 mb-3">
+                    <h:form id="frmAddUser" class="form-a contactForm">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label>Nom</label>
+                                <h:inputText class="form-control"  value="#{userManagerController.selectedUtilisateur.nom}" required="true" requiredMessage="Ce champs  est obligatoire" />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Prénom :</label>
+                                <h:inputText  class="form-control"  value="#{userManagerController.selectedUtilisateur.prenom}" required="true" requiredMessage="Ce champs  est obligatoire"  />
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label>Email :</label>
+                                <h:inputText class="form-control"  value="#{userManagerController.selectedUtilisateur.email}" required="true" requiredMessage="Ce champs  est obligatoire" />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Téléphone :</label>
+                                <h:inputText class="form-control" value="#{userManagerController.selectedUtilisateur.telephone}" required="false"/>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="roleSelect" >Role = #{userManagerController.selectedUtilisateur.role}:</label>
+                                <h:selectOneMenu class="form-control" id="roleSelect" name="#{userManagerController.selectedUtilisateur.role}">
+                                    <f:selectItems value="#{userManagerController.rolesList}" />
+                                </h:selectOneMenu>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="statusSelect" >Status du compte = #{userManagerController.selectedUtilisateur.status}:</label>
+                                <h:selectOneMenu class="form-control" id="statusSelect" name="#{userManagerController.selectedUtilisateur.status}">
+                                    <f:selectItems value="#{userManagerController.acountStatusList}" />
+                                </h:selectOneMenu>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6-md-12 mb-3">
+                                <!--<button type="submit" class="btn btn-a mx-auto">Djelkl</button>-->
+                                <h:commandButton value="Enregistrer" type="submit" styleClass="btn btn-a mx-auto"  action="#{userManagerController.updateUtilisateur}"/>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>
+</html>
