@@ -18,10 +18,6 @@
         <!-- Enable Hibernate's automatic session context management -->
         <property name="current_session_context_class">thread</property>
 
-        <!--  Caching -->
-        <property name="hibernate.cache.use_second_level_cache">true</property>
-        <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
-
         <property name="javax.persistence.validation.mode">none</property>
         <!-- Related to hibernate properties START -->
         <property name="hibernate.show_sql">false</property>

@@ -13,22 +13,45 @@ import java.io.IOException;
  * Created by ValdoR on 2019-12-16.
  */
 
-@WebFilter(urlPatterns = "/pages/*" ,servletNames = "{Faces Servlet}")
 public class LoginFilter extends AbstractFilter implements Filter {
     public void destroy() {
     }
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
-        HttpServletRequest request = (HttpServletRequest) req;
-        HttpServletResponse response = (HttpServletResponse) resp;
+        try{
+            HttpServletRequest request = (HttpServletRequest) req;
+            HttpServletResponse response = (HttpServletResponse) resp;
 
-        HttpSession session = request.getSession();
-        Utilisateur user = (Utilisateur) session.getAttribute("utilisateur");
-        if(session.isNew()  || user == null){
-            doLogin(req, resp, request);
-            return;
+            HttpSession session = request.getSession();
+            Utilisateur user = (Utilisateur) session.getAttribute("utilisateur");
+
+            if( session != null && user != null ){
+
+                System.out.println("++++++++++");
+                System.out.println("--- LOGIN ** +-");
+                System.out.println("++++++++++");
+
+                if(user.isAdministrateur()){
+                    response.sendRedirect(request.getContextPath() + "/admin/welcome.xhtml");
+                } else if(user.isCommercial()){
+                    response.sendRedirect(request.getContextPath() + "/commercial/welcome.xhtml");
+                }
+                else if(user.isComptable()){
+                    response.sendRedirect(request.getContextPath() + "/comptable/welcome.xhtml");
+                }
+                else{
+                    doLogin(req, resp, request);
+                }
+            }else{
+                System.out.println("++++++++++");
+                System.out.println("--- CHAIN FILTER ON LOGIN-");
+                System.out.println("++++++++++");
+                chain.doFilter(req, resp);
+            }
         }
-        chain.doFilter(req, resp);
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void init(FilterConfig config) throws ServletException {

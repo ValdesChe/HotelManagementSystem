@@ -46,7 +46,11 @@ public class Utilisateur implements Serializable {
 
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
-    private Role role;
+    private String role;
+
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private UtilisateurStatus status;
 
 
     @Column(name = "created_at")
@@ -107,11 +111,11 @@ public class Utilisateur implements Serializable {
         this.password = password;
     }
 
-    public Role getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(String role) {
         this.role = role;
     }
 
@@ -131,14 +135,22 @@ public class Utilisateur implements Serializable {
         this.updated_at = updated_at;
     }
 
+    public UtilisateurStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(UtilisateurStatus status) {
+        this.status = status;
+    }
+
     public boolean isComptable(){
-        return this.getRole() == Role.COMPTABLE;
+        return this.getRole().equalsIgnoreCase(Role.COMPTABLE.toString());
     }
     public boolean isCommercial(){
-        return this.getRole() == Role.COMMERCIAL;
+        return this.getRole().equalsIgnoreCase(Role.COMMERCIAL.toString());
     }
     public boolean isAdministrateur(){
-        return this.getRole() == Role.ADMIN;
+        return this.getRole().equalsIgnoreCase(Role.ADMIN.toString());
     }
 
     @Override
