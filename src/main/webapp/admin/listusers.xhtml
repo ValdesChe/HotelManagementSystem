@@ -10,7 +10,34 @@
 		<ui:define name="title">Alpha HOTEL | Bienvenue</ui:define>
 
 		<ui:define name="content">
+			<section class="intro-single">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 col-lg-8">
+							<div class="title-single-box">
+								<h1 class="title-single">Liste utilisateur !</h1>
+							</div>
+						</div>
+						<div class="col-md-12 col-lg-4">
+							<nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item">
+										<a href="#">Accueil</a>
+									</li>
+									<li class="breadcrumb-item">
+										<a href="#">Utilisateurs</a>
+									</li>
 
+									<li class="breadcrumb-item">
+										<a href="#">Liste</a>
+									</li>
+
+								</ol>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</section>
 			<!--/ Main container /-->
 			<div class="container">
 				<div class="table-wrapper">
@@ -41,12 +68,12 @@
 						</thead>
 						<tbody>
 
-						<ui:repeat value="#{userManagerController.utilisateurList}" var="utilisateur" >
+							<ui:repeat value="#{userManagerController.utilisateurList}" var="utilisateur" >
 							<tr>
 
-								<td>
-									&nbsp;
-								</td>
+									<td>
+										&nbsp;
+									</td>
 									<td>
 										#{utilisateur.nom}&nbsp;
 										#{utilisateur.prenom}
@@ -62,11 +89,11 @@
 									</td>
 									<td>
 										<h:form>
-											<h:commandLink styleClass="btn btn-danger text-white" action="#{userManagerController.editUser(utilisateur)}" href="#" value="Modifier" />
+											<h:commandLink styleClass="btn btn-action edit" action="#{userManagerController.editUser(utilisateur)}" href="#" value="Modifier" />
 										</h:form>
 									</td>
 							</tr>
-						</ui:repeat>
+							</ui:repeat>
 						</tbody>
 					</table>
 				</div>
