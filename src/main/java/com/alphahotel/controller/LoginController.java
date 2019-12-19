@@ -9,13 +9,14 @@ import com.alphahotel.utils.FacesContextUtil;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by ValdoR on 2019-12-12.
  */
-@RequestScoped
 @ManagedBean(name = "loginController")
+@RequestScoped
 public class LoginController extends AbstractController {
 
     @ManagedProperty(value = UtilisateurController.INJECTION_NAME)
@@ -63,6 +64,7 @@ public class LoginController extends AbstractController {
         return value.contains("@");
     }
 
+    // Fonction de connection utilisateur
     public String seConnecter() {
         Utilisateur utilisateur = isValidLogin(loginOrEmail, password);
 
@@ -78,7 +80,7 @@ public class LoginController extends AbstractController {
             if (utilisateur.isAdministrateur())
                 return utilisateurController.admin();
 
-            return "index.xhtml";
+            return "index.xhtml?faces-redirect=true";
         }
         displayErrorMessage("Check your login/password");
         return null;

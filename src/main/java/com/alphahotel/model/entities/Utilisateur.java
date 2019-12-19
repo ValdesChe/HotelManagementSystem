@@ -46,7 +46,7 @@ public class Utilisateur implements Serializable {
 
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
-    private Role role;
+    private String role;
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
@@ -111,11 +111,11 @@ public class Utilisateur implements Serializable {
         this.password = password;
     }
 
-    public Role getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(String role) {
         this.role = role;
     }
 
@@ -144,13 +144,13 @@ public class Utilisateur implements Serializable {
     }
 
     public boolean isComptable(){
-        return this.getRole() == Role.COMPTABLE;
+        return this.getRole().equalsIgnoreCase(Role.COMPTABLE.toString());
     }
     public boolean isCommercial(){
-        return this.getRole() == Role.COMMERCIAL;
+        return this.getRole().equalsIgnoreCase(Role.COMMERCIAL.toString());
     }
     public boolean isAdministrateur(){
-        return this.getRole() == Role.ADMIN;
+        return this.getRole().equalsIgnoreCase(Role.ADMIN.toString());
     }
 
     @Override

@@ -1,16 +1,45 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
 
-<h:head>
-    <title>ACCES REFUSÉ</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-</h:head>
-<h:body>
-    <h:outputLabel value="ACCESS DENIED"/>
-</h:body>
+<ui:composition template="./resources/home.xhtml">
+
+    <ui:define name="title">Alpha HOTEL | Connexion </ui:define>
+    <ui:define name="content">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5">
+                <h:form id="frmLogin" class="form-a contactForm">
+                    <div id="sendmessage">Your message has been sent. Thank you!</div>
+                    <div id="errormessage"></div>
+                    <h1>Connexion</h1>
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <div class="form-group">
+                                <h:inputText id="username" value="#{loginController.login}" label="Login or Password" maxlength="25" class="form-control form-control-lg form-control-a" alt="Username" autocomplete="off" readonly="false" required="true" requiredMessage="Username is required"
+                                             accesskey="q" />
+                                <div class="validation" />
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <div class="form-group">
+                                <h:inputSecret id="password" value="#{loginController.password}" maxlength="20" class="form-control form-control-lg form-control-a" required="true" requiredMessage="Password is required" />
+                                <div class="validation" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <h:commandButton action="#{loginController.seConnecter}" class="btn btn-a mx-auto" value="CONNEXION" ajax="false" />
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>
 </html>

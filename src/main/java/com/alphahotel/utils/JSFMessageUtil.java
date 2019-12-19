@@ -13,7 +13,7 @@ public class JSFMessageUtil {
         addMessageToJsfContext(facesMessage);
     }
 
-    public void sendErrorMessage(String message) {
+    public  void sendErrorMessage(String message) {
         FacesMessage facesMessage = createMessage(FacesMessage.SEVERITY_ERROR, message);
         addMessageToJsfContext(facesMessage);
     }
@@ -22,7 +22,7 @@ public class JSFMessageUtil {
         return new FacesMessage(severity, errorMessage, errorMessage);
     }
 
-    private void addMessageToJsfContext(FacesMessage facesMessage) {
+    private static void addMessageToJsfContext(FacesMessage facesMessage) {
         FacesContext.getCurrentInstance().addMessage(null, facesMessage);
     }
 }
