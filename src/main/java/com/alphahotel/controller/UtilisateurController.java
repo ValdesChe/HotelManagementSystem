@@ -43,10 +43,10 @@ public class UtilisateurController extends AbstractController  implements Serial
     }
 
     public String commercial(){
-        return "/commercial/commercial.xhtml?faces-redirect=true";
+        return "/commercial/welcome.xhtml?faces-redirect=true";
     }
 
     public String comptable(){
-        return "/comptable/comptable.xhtml?faces-redirect=true";
+        return "/comptable/welcome.xhtml?faces-redirect=true";
     }
 }
