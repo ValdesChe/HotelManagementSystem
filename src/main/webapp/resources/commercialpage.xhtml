@@ -46,13 +46,22 @@
             <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#{request.getContextPath()}/">Accueil</a>
+                        <a class="nav-link" href="#{request.getContextPath()}/commercial/welcome.xhtml">Reservations</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Chambres
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item"  href="#{request.getContextPath()}/commercial/nouvellechambre.xhtml">Ajouter</a>
+                            <a class="dropdown-item"  href="#{request.getContextPath()}/commercial/listechambre.xhtml">Toutes les chambres</a>
+                        </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"  href="#{request.getContextPath()}/listusers.xhtml">Factures</a>
+                        <a class="nav-link"  href="#{request.getContextPath()}/commercial/factures.xhtml">Factures</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#{request.getContextPath()}/statistics.xhtml">Statistiques</a>
+                        <a class="nav-link" href="#{request.getContextPath()}/commercial/statistics.xhtml">Statistiques</a>
                     </li>
                 </ul>
             </div>

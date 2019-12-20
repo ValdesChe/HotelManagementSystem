@@ -167,9 +167,7 @@ public class UserManagementController extends AbstractController  implements Ser
             }
         } else {
             displayErrorMessage("Mot de passe invalide !");
-
         }
-
         return null;
     }
 

@@ -17,18 +17,13 @@ import javax.servlet.http.HttpServletRequest;
  * Created by ValdoR on 2019-12-12.
  */
 @ManagedBean(name = "loginController")
-@RequestScoped
+@SessionScoped
 public class LoginController extends AbstractController {
-
-    @ManagedProperty(value = UtilisateurController.INJECTION_NAME)
-    private UtilisateurController utilisateurController;
 
     private String loginOrEmail;
     private String password;
 
-    public void setUtilisateurController(UtilisateurController utilisateurController) {
-        this.utilisateurController = utilisateurController;
-    }
+    private Utilisateur utilisateur = null;
 
     public String getLogin() {
         return loginOrEmail;
@@ -61,28 +56,40 @@ public class LoginController extends AbstractController {
         return utilisateur;
     }
 
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
+
+    public String getLoginOrEmail() {
+        return loginOrEmail;
+    }
+
+    public void setLoginOrEmail(String loginOrEmail) {
+        this.loginOrEmail = loginOrEmail;
+    }
+
     private boolean isEmail(String value) {
         return value.contains("@");
     }
 
     // Fonction de connection utilisateur
     public String seConnecter() {
-        Utilisateur utilisateur = isValidLogin(loginOrEmail, password);
-
-        System.out.println("LOGINNNNNNNNNN INTRO");
+        utilisateur = isValidLogin(loginOrEmail, password);
         if (utilisateur != null) {
-            System.out.println("LOGINNNNNNNNNN" + utilisateur.getRole());
-            System.out.println("LOGINNNNNNNNNN" + utilisateur.getId());
-            utilisateurController.setUtilisateur(utilisateur);
+
             FacesContextUtil.getRequest().getSession().setAttribute("utilisateur", utilisateur);
             if (utilisateur.isCommercial())
-                return utilisateurController.commercial();
+                return commercial();
 
             if (utilisateur.isComptable())
-                return utilisateurController.comptable();
+                return comptable();
 
             if (utilisateur.isAdministrateur())
-                return utilisateurController.admin();
+                return admin();
 
             return "index.xhtml";
         }
@@ -96,4 +103,15 @@ public class LoginController extends AbstractController {
         return "/login.xhtml?faces-redirect=true";
     }
 
+    public String admin(){
+        return "/admin/welcome.xhtml?faces-redirect=true";
+    }
+
+    public String commercial(){
+        return "/commercial/welcome.xhtml?faces-redirect=true";
+    }
+
+    public String comptable(){
+        return "/comptable/welcome.xhtml?faces-redirect=true";
+    }
 }

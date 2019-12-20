@@ -17,3 +17,28 @@ CREATE UNIQUE INDEX  utilisateur_id_uindex ON alphahotel.utilisateur (id);
 CREATE UNIQUE INDEX utilisateur_login_uindex ON alphahotel.utilisateur (login);
 CREATE UNIQUE INDEX utilisateur_email_uindex ON alphahotel.utilisateur (email);
 */
+
+create table chambre
+(
+  id int auto_increment
+    primary key,
+  utilisateur_id int null,
+  libele varchar(30) default 'CHAMBRE' null,
+  descrip varchar(150) default 'Chambre très spacieuse, idéale pour votre séjour privé' null,
+  type varchar(30) default 'DEFAULT' null,
+  photo_url varchar(150) default 'DEFAULT' null,
+  prix_min int default '150' null,
+  statut varchar(20) default 'ACTIVE' null,
+  created_at datetime default CURRENT_TIMESTAMP null,
+  updated_at datetime default CURRENT_TIMESTAMP null,
+  constraint chambre_libele_uindex
+  unique (libele),
+  constraint utilisateur_id_fk
+  foreign key (utilisateur_id) references alphahotel.utilisateur (id)
+)
+;
+
+create index utilisateur_id_fk
+  on chambre (utilisateur_id)
+;
+

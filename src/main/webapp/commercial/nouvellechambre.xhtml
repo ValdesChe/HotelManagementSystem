@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="../resources/commercialpage.xhtml">
+		<ui:define name="title">Alpha HOTEL | Bienvenue</ui:define>
+		<ui:define name="content">
+			<section class="intro-single">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 col-lg-8">
+							<div class="title-single-box">
+								<h1 class="title-single">Nouvelle chambre</h1>
+								<span class="color-text-a">Renseignez les informations de la chambre </span>
+							</div>
+						</div>
+						<div class="col-md-12 col-lg-4">
+							<nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item">
+										<a href="#">Accueil</a>
+									</li>
+									<li class="breadcrumb-item">
+										<a href="#">Chambres</a>
+									</li>
+
+									<li class="breadcrumb-item">
+										<a href="#">Ajouter</a>
+									</li>
+
+								</ol>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</section>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-9 mb-3">
+						<h:form id="frmAddChambre" class="form-a contactForm">
+							<div class="form-row">
+								<div class="form-group col-md-12">
+									<label>Libelé</label>
+									<h:inputText class="form-control" id="libele"  value="#{chambreController.selectedChambre.libele}"/>
+									<h:message for="libele" />
+								</div>
+							</div>
+
+							<div class="form-row">
+								<div class="form-group col-md-12">
+									<label>Description :</label>
+									<h:inputTextarea  class="form-control" id="descrip"  value="#{chambreController.selectedChambre.descrip}"/>
+									<h:message for="descrip" />
+								</div>
+							</div>
+
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="typeSelect" >Type de chambre:</label>
+									<h:selectOneMenu class="form-control" id="typeSelect" value="#{chambreController.selectedChambre.type}" name="#{chambreController.selectedChambre.type}">
+										<f:selectItems value="#{chambreController.bedroomTypes}" />
+									</h:selectOneMenu>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="statusSelect" >Status de la chambre:</label>
+									<h:selectOneMenu class="form-control" id="statusSelect" value="#{chambreController.selectedChambre.statut}" name="#{chambreController.selectedChambre.statut}">
+										<f:selectItems value="#{chambreController.chambreStatusList}" />
+									</h:selectOneMenu>
+								</div>
+							</div>
+
+							<div class="form-row">
+								<div class="form-group col-md-12">
+									<label for="prix">Prix minimum de la chambre :</label>
+									<h:inputText class="form-control" id="prix"  value="#{chambreController.selectedChambre.prix_min}"/>
+									<h:message for="prix" />
+								</div>
+							</div>
+
+							<div class="form-row">
+								<div class="form-group col-md-12">
+									<h:commandButton value="Enregistrer" type="submit" styleClass="btn btn-a mx-auto"  action="#{chambreController.nouvelleChambre}"/>
+								</div>
+							</div>
+						</h:form>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</html>
