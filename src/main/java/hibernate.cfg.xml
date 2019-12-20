@@ -29,6 +29,9 @@
 
         <!-- Entity Chambre -->
         <mapping class="com.alphahotel.model.entities.Chambre"/>
+
+        <!-- Entity Reservation -->
+        <mapping class="com.alphahotel.model.entities.Reservation"/>
         <!-- Related to the mapping END -->
 
     </session-factory>
