@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="../resources/commercialpage.xhtml">
+
+		<ui:define name="title">Alpha HOTEL | Bienvenue</ui:define>
+		<ui:define name="content">
+
+			<section class="intro-single">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 col-lg-8">
+							<div class="title-single-box">
+								<h1 class="title-single">Toutes nos chambres</h1>
+							</div>
+						</div>
+						<div class="col-md-12 col-lg-4">
+							<nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item">
+										<a href="#">Accueil</a>
+									</li>
+									<li class="breadcrumb-item">
+										<a href="#">Chambres</a>
+									</li>
+
+									<li class="breadcrumb-item">
+										<a href="#">Liste</a>
+									</li>
+
+								</ol>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</section>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<ui:repeat value="#{chambreController.listChambres}" var="chambre">
+							<div class="col-md-3">
+								<div class="card-box-a card-shadow" title="#{chambre.descrip}">
+									<div class="img-box-a">
+										<img src="#{request.getContextPath()}/resources/images/property-6.jpg" alt="" class="img-a img-fluid"/>
+									</div>
+									<div class="card-overlay">
+										<div class="card-overlay-a-content">
+											<div class="card-header-a">
+												<h2 class="card-title-a">
+													<a href="#">
+														<span class="btn">#{chambre.type}</span>
+														<br/>
+														#{chambre.libele}
+													</a>
+												</h2>
+											</div>
+											<div class="card-body-a">
+												<div class="price-box d-flex">
+													<span class="price-a">
+														Prix |
+														<h:outputText value="#{chambre.prix_min}">
+															<f:convertNumber type="currency"
+																			 currencySymbol="MAD" maxIntegerDigits="5"
+																			 maxFractionDigits="3"/>
+														</h:outputText>
+													</span>
+												</div>
+												<div class="d-flex">
+													<span class="btn BACKGROUND_#{chambre.statut}">
+														#{chambre.statut}
+													</span>
+												</div>
+												<a href="#{request.getContextPath()}/commercial/editerchambre.xhtml" class="link-a">Cliquer ici pour editer
+													<span class="ion-ios-arrow-forward"/>
+												</a>
+											</div>
+											<div class="card-footer-a">
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</ui:repeat>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</html>

@@ -60,9 +60,6 @@ public class UserManagementController extends AbstractController  implements Ser
     }
     public String nouvelUtilisateur(){
 
-        System.out.println("------+++++-----------");
-        System.out.println("------+++++-----------");
-        System.out.println("------+++++-----------");
         try {
             if(newUtilisateur.getEmail() == null)
                 return "index.html?faces-redirect=true";
@@ -71,8 +68,6 @@ public class UserManagementController extends AbstractController  implements Ser
                 new JSFMessageUtil().sendErrorMessage("Email invalide");
                 return null;
             }
-
-
 
             UtilisateurDAO utilisateurDAO = new UtilisateurDAO();
             utilisateurDAO.save(newUtilisateur);

@@ -8,6 +8,7 @@ import com.alphahotel.utils.Constants;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.sql.Date;
 import java.time.Instant;
@@ -19,7 +20,7 @@ import java.util.List;
  * Created by ValdoR on 2019-12-12.
  */
 @ManagedBean(name = "chambreController")
-@RequestScoped
+@SessionScoped
 public class ChambreController extends AbstractController  implements Serializable {
 
     private List<String> bedroomTypes = Arrays.asList(Constants.bedroomTypes);
@@ -34,8 +35,15 @@ public class ChambreController extends AbstractController  implements Serializab
         this.loginController = loginController;
     }
 
+    public String fetchChambreList() {
+        ChambreDAO chambreDAO = new ChambreDAO();
+        this.listChambres = chambreDAO.getEntities();
+        return "/commercial/listechambre.xhtml?faces-redirect=true";
+    }
+
     public ChambreController() {
         selectedChambre = new Chambre();
+        fetchChambreList();
     }
 
     public List<String> getBedroomTypes() {

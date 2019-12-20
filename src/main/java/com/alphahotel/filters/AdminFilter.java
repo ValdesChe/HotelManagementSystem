@@ -37,10 +37,10 @@ public class AdminFilter extends AbstractFilter implements Filter {
                     chain.doFilter(req, resp);
                 }
                 if(user.isCommercial()){
-                    response.sendRedirect(request.getContextPath() + "/commercial/welcome.xhtml");
+                    response.sendRedirect(request.getContextPath() + "/commercial/welcome.xhtml?faces-redirect=true");
                 }
                 if(user.isComptable()){
-                    response.sendRedirect(request.getContextPath() + "/comptable/welcome.xhtml");
+                    response.sendRedirect(request.getContextPath() + "/comptable/welcome.xhtml?faces-redirect=true");
                 }
 
             }else{

@@ -1530,6 +1530,49 @@ a:hover {
     margin-bottom: 1rem;
 }
 
+/*
+    COlors
+ */
+.COLOR_ACTIVE, .COLOR_CONFIRMED{
+    color: #35e65c;
+}
+
+.COLOR_INACTIVE, .COLOR_PENDING{
+    color: #ddd00c;
+}
+
+.COLOR_ENDED{
+    color: #dd5b29;
+}
+
+.COLOR_UNSPECIFIED, .COLOR_UNSPECIFIED{
+    color: #0c0edd;
+}
+/**
+    Backgrounds
+ */
+
+.BACKGROUND_ACTIVE, .BACKGROUND_CONFIRMED{
+    background: #35e65c;
+    color: #ffffff;
+}
+
+.BACKGROUND_INACTIVE, .BACKGROUND_PENDING{
+    background: #ddd00c;
+    color: #ffffff;
+}
+
+.BACKGROUND_ENDED{
+    background: #dd5b29;
+    color: #ffffff;
+}
+
+.BACKGROUND_UNSPECIFIED, .BACKGROUND_UNSPECIFIED{
+    background: #0c0edd;
+    color: #ffffff;
+}
+
+
 footer {
     background: #f3f3f3;
     text-align: center;
@@ -1768,7 +1811,7 @@ footer .credits {
 
     .card-box-a .price-a,
     .card-box-b .price-a {
-        font-size: .9rem;
+        font-size: .5rem;
     }
 
     .card-box-a:hover .card-overlay-a-content {
@@ -2170,3 +2213,4 @@ table.table .avatar {
     margin-top: 10px;
     font-size: 13px;
 }
+
