@@ -2,7 +2,7 @@ package com.alphahotel.model.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * Created by ValdoR on 2019-12-20.
@@ -12,7 +12,7 @@ import java.sql.Date;
 @Entity
 @Table(name="reservation")
 @NamedQueries({
-        @NamedQuery(name = "Reservation.findByStatus", query = "SELECT c  FROM Reservation r WHERE r.statut = :status_reservation")
+        @NamedQuery(name = "Reservation.findByStatus", query = "SELECT r FROM Reservation r WHERE r.statut = :status_reservation")
 })
 public class Reservation implements Serializable {
 
@@ -29,8 +29,14 @@ public class Reservation implements Serializable {
     @Column(name = "prenomcl", nullable = false, length = 30)
     private String prenomcl;
 
-    @Column(name = "numpassort", length = 30)
-    private String numeropassort;
+    @Column(name = "numpassport", length = 30)
+    private String numeropassport;
+
+    @Column(name = "telephone", length = 30)
+    private String telephone;
+
+    @Column(name = "email", length = 30)
+    private String email;
 
     @Column(name = "nbnuit", length = 11)
     private int nbnuit;
@@ -93,12 +99,28 @@ public class Reservation implements Serializable {
         this.prenomcl = prenomcl;
     }
 
-    public String getNumeropassort() {
-        return numeropassort;
+    public String getNumeropassport() {
+        return numeropassport;
     }
 
-    public void setNumeropassort(String numeropassort) {
-        this.numeropassort = numeropassort;
+    public void setNumeropassport(String numeropassort) {
+        this.numeropassport = numeropassort;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public int getNbnuit() {

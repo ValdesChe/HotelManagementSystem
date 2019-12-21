@@ -1573,6 +1573,52 @@ a:hover {
 }
 
 
+/**
+    ACCESSOIRES
+ */
+.live-stream {
+    height: 16px;
+    width: 16px;
+    border-radius: 10%;
+    background: #000000;
+    display: inline-block;
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-name: blinker;
+    -moz-animation-duration: 2s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: infinite;
+    animation-name: blinker;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+@-moz-keyframes blinker {
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+@-webkit-keyframes blinker {
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+@keyframes blinker {
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+/**
+    FIN ACCESSOIRES
+ */
+
+
+
+
+
 footer {
     background: #f3f3f3;
     text-align: center;
@@ -1632,17 +1678,17 @@ footer .credits {
 }
 
 .form-a select.form-control-lg:not([size]):not([multiple]) {
-    height: 3.5rem;
+    height: 3rem;
 }
 
 .form-a .form-control {
     border-radius: 0;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 300;
 }
 
 .form-a .form-control.form-control-a {
-    height: 3.5rem;
+    height: 2.8rem;
 }
 
 .form-a .form-control:focus {

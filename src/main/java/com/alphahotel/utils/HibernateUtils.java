@@ -14,7 +14,6 @@ import java.io.Serializable;
  (hibernate.cfg.xml) d'être associé à la source de données. Elle fournit des objets Session pour
  manipuler les données.
  */
-
 @SuppressWarnings("ALL")
 public final class HibernateUtils implements Serializable {
 

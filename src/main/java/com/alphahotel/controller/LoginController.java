@@ -12,13 +12,14 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.servlet.http.HttpServletRequest;
+import java.io.Serializable;
 
 /**
  * Created by ValdoR on 2019-12-12.
  */
 @ManagedBean(name = "loginController")
 @SessionScoped
-public class LoginController extends AbstractController {
+public class LoginController extends AbstractController implements Serializable {
 
     private String loginOrEmail;
     private String password;

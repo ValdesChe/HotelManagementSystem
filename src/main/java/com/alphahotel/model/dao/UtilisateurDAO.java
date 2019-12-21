@@ -17,7 +17,6 @@ public class UtilisateurDAO extends HibernateDAO<Utilisateur>{
 
     public Utilisateur findByLogin(String login){
         return (Utilisateur) getSession().getNamedQuery("Utilisateur.findByLogin").setParameter("login", login).uniqueResult();
-
     }
 
     public Utilisateur findByEmail(String email){
