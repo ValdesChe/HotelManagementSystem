@@ -25,7 +25,7 @@ public class Mailer implements Serializable{
         Session session = Session.getDefaultInstance(props,
                 new javax.mail.Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication("fromTemporaryEmail@","yourTempSecuredPass");
+                        return new PasswordAuthentication("ingeekteam@gmail.com","Test2019@@@");
                     }
                 });
         //compose message
