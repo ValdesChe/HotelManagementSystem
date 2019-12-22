@@ -1753,6 +1753,103 @@ footer .credits {
     color: #ffffff;
 }
 
+
+
+
+.generic_price_tag .price .sign{
+    color: #414141;
+}
+
+.generic_price_tag .price .currency{
+    color: #414141;
+}
+
+.generic_price_tag .price .cent{
+    color: #414141;
+}
+
+.generic_price_tag .month{
+    color: #414141;
+}
+
+.generic_price_tag{
+    padding: 0 0 20px;
+}
+
+.generic_price_tag .price{
+    display: block;
+}
+
+.generic_price_tag .price .sign{
+    display: inline-block;
+    font-family: "Lato",sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    vertical-align: middle;
+}
+
+.generic_price_tag .price .currency{
+    font-family: "Lato",sans-serif;
+    font-size: 45px;
+    font-weight: 300;
+    letter-spacing: -2px;
+    line-height: 50px;
+    padding: 0;
+    vertical-align: middle;
+}
+
+.generic_price_tag .price .cent{
+    display: inline-block;
+    font-family: "Lato",sans-serif;
+    font-size: 30px;
+    font-weight: 400;
+    vertical-align: bottom;
+}
+
+.generic_price_tag .month{
+    font-family: "Lato",sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    vertical-align: bottom;
+}
+
+
+/**
+    BTN OR
+ */
+.btn-group-or>.btn:first-child {
+    padding-right: 1.3rem;
+}
+.btn-group-or>.btn:last-child {
+    padding-left: 1.3rem;
+}
+.btn-group-or .or {
+    position: relative;
+    width: .3rem;
+    height: 2.5rem;
+    z-index: 3;
+}
+.btn-group-or .or:before {
+    position: absolute;
+    text-align: center;
+    border-radius: 50%;
+    content: '';
+    top: 50%;
+    left: 50%;
+    background-color: #fff;
+    margin-top: -1rem;
+    margin-left: -1rem;
+    width: 2rem;
+    height: 2rem;
+    line-height:1.8rem;
+    color: #868e96;
+}
+
+/**
+    END BTN OR
+ */
+
 @media (min-width: 576px) {
     .intro .intro-title {
         font-size: 3.5rem;

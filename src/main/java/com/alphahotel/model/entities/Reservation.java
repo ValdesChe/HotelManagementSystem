@@ -12,7 +12,7 @@ import java.util.Date;
 @Entity
 @Table(name="reservation")
 @NamedQueries({
-        @NamedQuery(name = "Reservation.findByStatus", query = "SELECT r FROM Reservation r WHERE r.statut = :status_reservation")
+        @NamedQuery(name = "Reservation.findByStatus", query = "SELECT r FROM Reservation r WHERE r.statut = :status_reservation ORDER BY r.created_at ASC, r.date_debut ASC ")
 })
 public class Reservation implements Serializable {
 
@@ -201,6 +201,21 @@ public class Reservation implements Serializable {
 
     public void setChambre(Chambre chambre) {
         this.chambre = chambre;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Reservation{" +
+                "id=" + id +
+                ", nomcl='" + nomcl + '\'' +
+                ", prenomcl='" + prenomcl + '\'' +
+                ", numeropassport='" + numeropassport + '\'' +
+                ", email='" + email + '\'' +
+                ", statut='" + statut + '\'' +
+                ", created_at=" + created_at +
+                ", updated_at=" + updated_at +
+                '}';
     }
 }
 

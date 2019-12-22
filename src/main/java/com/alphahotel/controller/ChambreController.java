@@ -35,10 +35,9 @@ public class ChambreController extends AbstractController  implements Serializab
         this.loginController = loginController;
     }
 
-    public String fetchChambreList() {
+    public void fetchChambreList() {
         ChambreDAO chambreDAO = new ChambreDAO();
         this.listChambres = chambreDAO.getEntities();
-        return "/commercial/listechambre.xhtml?faces-redirect=true";
     }
 
     public ChambreController() {

@@ -97,7 +97,6 @@ public class HibernateDAO<T> implements InterfaceDAO<T>, Serializable {
 
     @Override
     public List<T> getListByDetachedCriteria(DetachedCriteria criteria) {
-
         this.session = HibernateUtils.getSessionFactory().openSession();
         this.transaction = session.beginTransaction();
         List<T> entities = criteria.getExecutableCriteria(session).list();

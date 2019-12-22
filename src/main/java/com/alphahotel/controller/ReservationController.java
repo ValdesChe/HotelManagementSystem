@@ -6,15 +6,9 @@ import com.alphahotel.model.entities.ReservationStatus;
 import com.alphahotel.utils.Constants;
 import com.alphahotel.utils.Helpers;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
-import javax.faces.event.AbortProcessingException;
-import javax.faces.event.AjaxBehaviorEvent;
+import javax.faces.bean.*;
 import java.io.Serializable;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Arrays;
 import java.util.Date;
@@ -24,21 +18,20 @@ import java.util.List;
  * Created by ValdoR on 2019-12-12.
  */
 @ManagedBean(name = "reservationController")
-@SessionScoped
+@ViewScoped
 public class ReservationController extends AbstractController  implements Serializable {
     private final List<String> reservationStatus = Arrays.asList(Constants.reservationStatusList);
     private Reservation reservation;
-
+    private ReservationDAO reservationDAO;
     private long nbnuit = 0;
 
     @ManagedProperty(value="#{loginController}")
     private LoginController loginController; // +setter
-    public void setLoginController(LoginController loginController) {
-        this.loginController = loginController;
-    }
 
-    public void fetchReservationList() {
-        ReservationDAO reservationDAO = new ReservationDAO();
+    private List<Reservation> reservationList;
+
+    public ReservationController() {
+        reservationDAO = new ReservationDAO();
     }
 
     /*
@@ -64,10 +57,6 @@ public class ReservationController extends AbstractController  implements Serial
 
     */
 
-    public ReservationController() {
-        reservation = new Reservation();
-    }
-
     public String creerReservation() throws ParseException {
         ReservationDAO reservationDAO = new ReservationDAO();
         if (isValidReservation(reservation) ) {
@@ -91,7 +80,6 @@ public class ReservationController extends AbstractController  implements Serial
 
         return null;
     }
-
 
 
     private boolean isValidReservation(Reservation reservation) {
@@ -160,5 +148,17 @@ public class ReservationController extends AbstractController  implements Serial
 
     public LoginController getLoginController() {
         return loginController;
+    }
+
+    public List<Reservation> getReservationList() {
+        return reservationDAO.findByStatus(ReservationStatus.PENDING.toString());
+    }
+
+    public void setReservationList(List<Reservation> reservationList) {
+        this.reservationList = reservationList;
+    }
+
+    public void setLoginController(LoginController loginController) {
+        this.loginController = loginController;
     }
 }
