@@ -2,6 +2,7 @@ package com.alphahotel.utils;
 
 
 import javax.mail.*;
+import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.Serializable;
@@ -10,36 +11,51 @@ import java.util.Properties;
  * Created by ValdoR on 2019-12-22.
  */
 public class Mailer implements Serializable{
-    static Properties props = new Properties();
-    public Mailer(){
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.socketFactory.port", "465");
-        props.put("mail.smtp.socketFactory.class",
-                "javax.net.ssl.SSLSocketFactory");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.port", "465");
+    Properties emailProperties;
+    Session mailSession;
+    MimeMessage emailMessage;
+
+
+    public void setMailServerProperties() {
+
+        String emailPort = "587";//gmail's smtp port
+
+        emailProperties = System.getProperties();
+        emailProperties.put("mail.smtp.port", emailPort);
+        emailProperties.put("mail.smtp.auth", "true");
+        emailProperties.put("mail.smtp.starttls.enable", "true");
+
     }
 
-    public static void send(String to,String sub,String msg){
-        //get Session
-        Session session = Session.getDefaultInstance(props,
-                new javax.mail.Authenticator() {
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication("ingeekteam@gmail.com","Test2019@@@");
-                    }
-                });
-        //compose message
-        try {
-            MimeMessage message = new MimeMessage(session);
-            message.addRecipient(Message.RecipientType.TO ,new InternetAddress(to));
-            message.setSubject(sub);
-            message.setText(msg);
-            //send message
-            Transport.send(message);
-            System.out.println("message sent successfully");
-        }  catch (MessagingException e) {
-            e.printStackTrace();
+    public void createEmailMessage(String toEmail[], String subject, String body) throws AddressException,
+            MessagingException {
+        String[] toEmails = toEmail;
+        String emailSubject = subject;
+        String emailBody = body;
+
+        mailSession = Session.getDefaultInstance(emailProperties, null);
+        emailMessage = new MimeMessage(mailSession);
+
+        for (int i = 0; i < toEmails.length; i++) {
+            System.out.println(toEmail[i]);
+            emailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmails[i]));
         }
 
+        emailMessage.setSubject(emailSubject);
+        emailMessage.setContent(emailBody, "text/html");
+    }
+
+    public void sendEmail() throws AddressException, MessagingException {
+
+        String emailHost = "smtp.gmail.com";
+        String fromUser = "ingeekteam@gmail.com";//just the id alone without @gmail.com
+        String fromUserEmailPassword = "Test2019@@@";
+
+        Transport transport = mailSession.getTransport("smtp");
+
+        transport.connect(emailHost, fromUser, fromUserEmailPassword);
+        transport.sendMessage(emailMessage, emailMessage.getAllRecipients());
+        transport.close();
+        System.out.println("Email sent successfully.");
     }
 }

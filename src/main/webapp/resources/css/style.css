@@ -94,6 +94,11 @@ a:hover {
     color: #2eca6a;
 }
 
+.bg-b {
+    background: #2eca6a;
+    color: white;
+}
+
 .color-d {
     color: #adadad;
 }

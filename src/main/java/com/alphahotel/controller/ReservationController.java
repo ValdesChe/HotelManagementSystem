@@ -4,7 +4,9 @@ import com.alphahotel.model.dao.ReservationDAO;
 import com.alphahotel.model.entities.Reservation;
 import com.alphahotel.model.entities.ReservationStatus;
 import com.alphahotel.utils.Constants;
+import com.alphahotel.utils.FacesContextUtil;
 import com.alphahotel.utils.Helpers;
+import com.alphahotel.utils.Mailer;
 
 import javax.faces.bean.*;
 import java.io.Serializable;
@@ -18,7 +20,7 @@ import java.util.List;
  * Created by ValdoR on 2019-12-12.
  */
 @ManagedBean(name = "reservationController")
-@ViewScoped
+@RequestScoped
 public class ReservationController extends AbstractController  implements Serializable {
     private final List<String> reservationStatus = Arrays.asList(Constants.reservationStatusList);
     private Reservation reservation;
@@ -34,31 +36,8 @@ public class ReservationController extends AbstractController  implements Serial
         reservationDAO = new ReservationDAO();
     }
 
-    /*
-    public void setReservationStartDate(AjaxBehaviorEvent event)
-            throws AbortProcessingException, ParseException {
-        Date date = Helpers.formatDateOrFail(new Date().toString());
-
-        if (date_debut.trim().length() > 0) {
-            date = Helpers.formatDateOrFail(date_debut);
-        }
-        reservation.setDate_debut(date);
-    }
-
-    public void setReservationEndDate(AjaxBehaviorEvent event)
-            throws AbortProcessingException, ParseException {
-        Date date = Helpers.formatDateOrFail(new Date().toString());
-        System.out.println("bOooooooooooooo");
-        if (date_fin.trim().length() > 0) {
-            date = Helpers.formatDateOrFail(date_fin);
-        }
-        reservation.setDate_fin(date);
-    }
-
-    */
 
     public String creerReservation() throws ParseException {
-        ReservationDAO reservationDAO = new ReservationDAO();
         if (isValidReservation(reservation) ) {
             Date date = Helpers.formatDateOrFail(Helpers.actualDateTime());
             reservation.setCreated_at(date);
@@ -67,8 +46,8 @@ public class ReservationController extends AbstractController  implements Serial
             reservation.setNbnuit(Math.toIntExact(Helpers.diffDatesInDays(reservation.getDate_debut(), reservation.getDate_fin())));
             try {
                 reservationDAO.save(reservation);
-                displayInfoMessage("Reservation créée avec succès !");
                 reservation = new Reservation();
+                displayInfoMessage("Reservation créée avec succès !");
             }
             catch (Exception e){
                 e.printStackTrace();
@@ -81,6 +60,43 @@ public class ReservationController extends AbstractController  implements Serial
         return null;
     }
 
+    public void confirmReservation(Reservation reservation) throws ParseException {
+        if (isValidReservation(reservation)) {
+            Date date = Helpers.formatDateOrFail(Helpers.actualDateTime());
+            reservation.setUpdated_at(date);
+            reservation.setStatut(ReservationStatus.CONFIRM.toString());
+            reservation.setCommercial_confirm(loginController.getUtilisateur());
+            try {
+                String body = "&nbsp; Bonjour M/Mme <b>"+ reservation.getNomcl() + "</b><br/>"
+                        + "&nbsp; Nous vous informons par ce message que votre reservaton de chambre <br/>"
+                        + " allant du " + reservation.getDate_debut().toString() + " au "
+                        + reservation.getDate_fin().toString() + " (" + reservation.getNbnuit() + " nuits )a été confirmée en ce jour. <br/>"
+                        + "&nbsp; Nous vous souhaitons un agréable séjour chez "
+                        + "<a href=\"www.alphahotel.com\" title=\"Visitez notre site\"> ALPHA HOTEL </a>" +
+                        " et nous esperons vous voir d'ici peu chez nous !<br/><br/>"
+                        +"Reception ALPHA HOTEL par" + loginController.getUtilisateur().getPrenom() +"<br/><br/><br/><br/>"
+                        + "Cordialement,";
+                String subject = "CONFIRMATION RESERVATION HOTEL ALPHA";
+                Mailer javaEmail = new Mailer();
+
+                String [] table = new String[1];
+                table[0] = reservation.getEmail();
+
+                javaEmail.setMailServerProperties();
+                javaEmail.createEmailMessage(table, subject, body);
+                javaEmail.sendEmail();
+                reservationDAO.update(reservation);
+                displayInfoMessage("Reservation confirmée avec succès !");
+                FacesContextUtil.redirect("/commercial/reservations.xhtml");
+            }
+            catch (Exception e){
+                e.printStackTrace();
+                displayErrorMessage("Une érreur est survenue lors de la confirmation de la reservation!");
+            }
+        } else {
+            displayErrorMessage("La reservation a déja expirée !");
+        }
+    }
 
     private boolean isValidReservation(Reservation reservation) {
 

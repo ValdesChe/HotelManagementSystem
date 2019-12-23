@@ -90,7 +90,9 @@
                                     <div class="btn-group btn-group-or" role="group">
                                         <button class="btn btn-secondary">Annuler</button>
                                         <div class="or"></div>
-                                        <button class="btn color-b">Confirmer</button>
+                                        <h:form>
+                                            <h:commandButton action="#{reservationController.confirmReservation(reservation)}" class="btn bg-b" value="Confirmer" />
+                                        </h:form>
                                     </div>
                                 </div>
                             </div>
