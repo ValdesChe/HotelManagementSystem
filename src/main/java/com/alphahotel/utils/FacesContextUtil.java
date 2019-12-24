@@ -3,6 +3,7 @@ package com.alphahotel.utils;
 import org.hibernate.Session;
 
 import javax.faces.context.FacesContext;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -29,6 +30,10 @@ public class FacesContextUtil {
 
     public static HttpServletResponse getResponse() {
         return (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+    }
+
+    public static ServletContext getServeletContext() {
+        return (ServletContext)FacesContext.getCurrentInstance().getExternalContext().getContext();
     }
 
     public static void redirect(String url) {

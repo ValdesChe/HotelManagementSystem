@@ -6,15 +6,90 @@
 	  xmlns:ui="http://java.sun.com/jsf/facelets">
 
 	<ui:composition template="../resources/commercialpage.xhtml">
+
 		<ui:define name="title">Alpha HOTEL | Bienvenue</ui:define>
 		<ui:define name="content">
+
 			<section class="intro-single">
 				<div class="container">
 					<div class="row">
-						<h1>Bienvenue CommercialSPACE</h1>
+						<div class="col-md-12 col-lg-8">
+							<div class="title-single-box">
+								<h1 class="title-single">Factures à imprimer</h1>
+							</div>
+						</div>
+						<div class="col-md-12 col-lg-4">
+							<nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item">
+										<a href="#">Accueil</a>
+									</li>
+									<li class="breadcrumb-item">
+										<a href="#">Factures</a>
+									</li>
+
+									<li class="breadcrumb-item">
+										<a href="#">Liste</a>
+									</li>
+
+								</ol>
+							</nav>
+						</div>
 					</div>
 				</div>
 			</section>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<ui:repeat value="#{facturationController.listOfReservationsToPrint}" var="reservation">
+							<div class="col-md-3">
+								<div class="card-box-a card-shadow" title="#{reservation.date_debut} - #{reservation.date_fin} ">
+									<div class="img-box-a">
+										<img src="#{request.getContextPath()}/resources/images/property-4.jpg" alt="" class="img-a img-fluid"/>
+									</div>
+									<div class="card-overlay">
+										<div class="card-overlay-a-content">
+											<div class="card-header-a">
+												<h2 class="card-title-a">
+													<a href="#">
+														<span class="btn">#{reservation.statut}</span>
+														<br/>
+														#{reservation.nomcl} #{reservation.prenomcl}
+													</a>
+												</h2>
+											</div>
+											<div class="card-body-a">
+												<div class="price-box d-flex">
+													<span class="price-a">
+														Prix |
+														<h:outputText value="#{reservation.total}">
+															<f:convertNumber type="currency"
+																			 currencySymbol="MAD" maxIntegerDigits="5"
+																			 maxFractionDigits="3"/>
+														</h:outputText>
+													</span>
+												</div>
+												<div class="d-flex">
+													<span class="btn BACKGROUND_#{reservation.statut}">
+														#{reservation.statut}
+													</span>
+												</div>
+												<h:form>
+													<h:commandButton action="#{facturationController.printReservation(reservation)}" value="Facturer" />
+												</h:form>
+											</div>
+											<div class="card-footer-a">
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</ui:repeat>
+					</div>
+
+                </div>
+			</div>
 		</ui:define>
 	</ui:composition>
 </html>

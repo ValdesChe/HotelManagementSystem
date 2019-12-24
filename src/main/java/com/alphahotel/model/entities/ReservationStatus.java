@@ -7,5 +7,6 @@ public enum ReservationStatus {
     PENDING,
     CONFIRM,
     ENDED,
-    CANCELLED
+    CANCELLED,
+    TO_PRINT
 }
