@@ -5,60 +5,63 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<h:head>
+    <h:head>
 
-    <!-- Google Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/>
-    <!-- Bootstrap CSS File -->
+        <!-- Google Fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/>
+        <!-- Bootstrap CSS File -->
+         <!--
+        <link href="#{request.getContextPath()}/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+            -->
 
-    <link href="#{request.getContextPath()}/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="#{request.getContextPath()}/resources/css/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link href="#{request.getContextPath()}/resources/css/lib/animate/animate.min.css" rel="stylesheet" type="text/css" />
-    <link href="#{request.getContextPath()}/resources/css/lib/ionicons/css/ionicons.min.css" rel="stylesheet" type="text/css" />
-    <link href="#{request.getContextPath()}/resources/css/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" type="text/css" />
+        <link href="#{request.getContextPath()}/resources/css/lib/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="#{request.getContextPath()}/resources/css/lib/animate/animate.css" rel="stylesheet" type="text/css" />
+        <link href="#{request.getContextPath()}/resources/css/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="#{request.getContextPath()}/resources/css/lib/animate/animate.min.css" rel="stylesheet" type="text/css" />
+        <link href="#{request.getContextPath()}/resources/css/lib/ionicons/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+        <link href="#{request.getContextPath()}/resources/css/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" type="text/css" />
 
-    <link href="#{request.getContextPath()}/resources/css/style.css" rel="stylesheet" type="text/css" />
-    <!-- =======================================================
-          Theme Name: EstateAgency
-          Theme URL: https://bootstrapmade.com/real-estate-agency-bootstrap-template/
-          Author: BootstrapMade.com
-          License: https://bootstrapmade.com/license/
-        ======================================================= -->
-    <script type="text/javascript">
-        WebFontConfig = {
-            google: {
-                families: ['Poppins::latin']
-            }
-        };
-        (function() {
-            var wf = document.createElement('script');
-            wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-                '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-            wf.type = 'text/javascript';
-            wf.async = 'true';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(wf, s);
-        })();
-    </script>
-    <title>
-        <ui:insert name="title"> Default Title </ui:insert>
-    </title>
-</h:head>
+        <link href="#{request.getContextPath()}/resources/css/style.css" rel="stylesheet" type="text/css" />
+        <!-- =======================================================
+              Theme Name: EstateAgency
+              Theme URL: https://bootstrapmade.com/real-estate-agency-bootstrap-template/
+              Author: BootstrapMade.com
+              License: https://bootstrapmade.com/license/
+            ======================================================= -->
+        <script type="text/javascript">
+            WebFontConfig = {
+                google: {
+                    families: ['Poppins::latin']
+                }
+            };
+            (function() {
+                var wf = document.createElement('script');
+                wf.src = ('https:' === document.location.protocol ? 'https' : 'http') +
+                    '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+                wf.type = 'text/javascript';
+                wf.async = 'true';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(wf, s);
+            })();
+        </script>
+        <title>
+            <ui:insert name="title"> Default Title </ui:insert>
+        </title>
+    </h:head>
 
-<h:body>
+    <h:body>
 
 
-    <!--/ Nav Star /-->
-    <nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
-        <div class="container">
+        <!--/ Nav Star /-->
+        <nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
                     aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
                 <span/>
                 <span/>
                 <span/>
             </button>
-            <a class="navbar-brand text-brand" href="index.html">
+            <a class="navbar-brand text-brand" href="#">
                 Alpha
                 <span class="color-b">Hotel</span></a>
 
@@ -75,99 +78,100 @@
                     </li>
                 </ul>
             </div>
-        </div>
-    </nav>
-    <!--/ Nav End /-->
+            <h:form>
+                <h:commandLink action="#{loginController.seDeconnecter}" type="button" class="btn btn-b-logout navbar-toggle-box-collapse d-none d-md-block">
+                    <span class="fa fa-sign-out" aria-hidden="true"/> Deconnexion
+                </h:commandLink>
+            </h:form>
+        </nav>
+        <!--/ Nav End /-->
 
-    <!-- Main container -->
-    <ui:insert name="content"> Admin Page Main Content... </ui:insert>
-    <!-- End Main container -->
+        <!-- Main container -->
+        <ui:insert name="content"> Admin Page Main Content... </ui:insert>
+        <!-- End Main container -->
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <nav class="nav-footer">
-                        <ul class="list-inline">
-                            <li class="list-inline-item">
-                                <a href="#">Accueil</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#">A propos</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#">Politique de confidentialités</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#">Contact</a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <div class="socials-a">
-                        <ul class="list-inline">
-                            <li class="list-inline-item">
-                                <a href="#">
-                                    <i class="fa fa-facebook" aria-hidden="true"/>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#">
-                                    <i class="fa fa-twitter" aria-hidden="true"/>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#">
-                                    <i class="fa fa-instagram" aria-hidden="true"/>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#">
-                                    <i class="fa fa-pinterest-p" aria-hidden="true"/>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#">
-                                    <i class="fa fa-dribbble" aria-hidden="true"/>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="copyright-footer">
-                        <p class="copyright color-text-a">
-                            &copy; Copyright
-                            <span class="color-a">AlphaHotel</span> All Rights Reserved.
-                        </p>
-                    </div>
-                    <div class="credits">
-                        <!--
-                          All the links in the footer should remain intact.
-                          You can delete the links only if you purchased the pro version.
-                          Licensing information: https://bootstrapmade.com/license/
-                          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=EstateAgency
-                        -->
-                        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <nav class="nav-footer">
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <a href="#">Accueil</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#">A propos</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#">Politique de confidentialités</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#">Contact</a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="socials-a">
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <a href="#">
+                                        <i class="fa fa-facebook" aria-hidden="true"/>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#">
+                                        <i class="fa fa-twitter" aria-hidden="true"/>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#">
+                                        <i class="fa fa-instagram" aria-hidden="true"/>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#">
+                                        <i class="fa fa-pinterest-p" aria-hidden="true"/>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#">
+                                        <i class="fa fa-dribbble" aria-hidden="true"/>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="copyright-footer">
+                            <p class="copyright color-text-a">
+                                &copy; Copyright
+                                <span class="color-a">AlphaHotel</span> All Rights Reserved.
+                            </p>
+                        </div>
+                        <div class="credits">
+                            <!--
+                              All the links in the footer should remain intact.
+                              You can delete the links only if you purchased the pro version.
+                              Licensing information: https://bootstrapmade.com/license/
+                              Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=EstateAgency
+                            -->
+                            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </footer>
-    <!--/ Footer End /-->
+        </footer>
+        <!--/ Footer End /-->
 
-    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-    <div id="preloader"></div>
+        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"/></a>
+        <div id="preloader"/>
 
+        <script language="javascript" src="#{request.getContextPath()}/resources/js/lib/jquery/jquery.min.js" />
+        <script language="javascript" src="#{request.getContextPath()}/resources/js/lib/jquery/jquery-migrate.min.js"/>
+        <script language="javascript" src="#{request.getContextPath()}/resources/js/lib/popper/popper.min.js"/>
+        <script language="javascript" src="#{request.getContextPath()}/resources/js/lib/bootstrap/js/bootstrap.min.js"/>
+        <script language="javascript" src="#{request.getContextPath()}/resources/js/lib/easing/easing.min.js"/>
+        <script language="javascript" src="#{request.getContextPath()}/resources/js/lib/owlcarousel/owl.carousel.min.js"/>
+        <script language="javascript" src="#{request.getContextPath()}/resources/js/lib/scrollreveal/scrollreveal.min.js"/>
 
-
-    <script language="javascript" src="#{request.getContextPath()}/resources/js/lib/jquery/jquery.min.js" />
-    <script language="javascript" src="#{request.getContextPath()}/resources/js/lib/jquery/jquery-migrate.min.js"/>
-    <script language="javascript" src="#{request.getContextPath()}/resources/js/lib/popper/popper.min.js"/>
-    <script language="javascript" src="#{request.getContextPath()}/resources/js/lib/bootstrap/js/bootstrap.min.js"/>
-    <script language="javascript" src="#{request.getContextPath()}/resources/js/lib/easing/easing.min.js"/>
-    <script language="javascript" src="#{request.getContextPath()}/resources/js/lib/owlcarousel/owl.carousel.min.js"/>
-    <script language="javascript" src="#{request.getContextPath()}/resources/js/lib/scrollreveal/scrollreveal.min.js"/>
-
-    <script language="javascript" src="#{request.getContextPath()}/resources/js/main.js"/>
-</h:body>
-
+        <script language="javascript" src="#{request.getContextPath()}/resources/js/main.js"/>
+    </h:body>
 </html>

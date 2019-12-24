@@ -4,6 +4,8 @@ import org.hibernate.Session;
 
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * Created by ValdoR on 2019-12-11.
@@ -23,5 +25,17 @@ public class FacesContextUtil {
 
     public static HttpServletRequest getRequest() {
         return (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+    }
+
+    public static HttpServletResponse getResponse() {
+        return (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+    }
+
+    public static void redirect(String url) {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect(url);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -4,6 +4,7 @@ import com.alphahotel.model.dao.HibernateDAO;
 import com.alphahotel.model.dao.UtilisateurDAO;
 import com.alphahotel.model.entities.Role;
 import com.alphahotel.model.entities.Utilisateur;
+import com.alphahotel.utils.ConverterSHA1;
 import com.alphahotel.utils.FacesContextUtil;
 
 import javax.faces.bean.ManagedBean;
@@ -11,23 +12,19 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.servlet.http.HttpServletRequest;
+import java.io.Serializable;
 
 /**
  * Created by ValdoR on 2019-12-12.
  */
 @ManagedBean(name = "loginController")
-@RequestScoped
-public class LoginController extends AbstractController {
-
-    @ManagedProperty(value = UtilisateurController.INJECTION_NAME)
-    private UtilisateurController utilisateurController;
+@SessionScoped
+public class LoginController extends AbstractController implements Serializable {
 
     private String loginOrEmail;
     private String password;
 
-    public void setUtilisateurController(UtilisateurController utilisateurController) {
-        this.utilisateurController = utilisateurController;
-    }
+    private Utilisateur utilisateur = null;
 
     public String getLogin() {
         return loginOrEmail;
@@ -54,10 +51,26 @@ public class LoginController extends AbstractController {
             utilisateur = new UtilisateurDAO().findByLogin(loginOrEmail);
         }
 
-        if (utilisateur == null || !password.equals(utilisateur.getPassword())) {
+        if (utilisateur == null || !ConverterSHA1.cipher(password).equalsIgnoreCase((utilisateur.getPassword())) ) {
             return null;
         }
         return utilisateur;
+    }
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
+
+    public String getLoginOrEmail() {
+        return loginOrEmail;
+    }
+
+    public void setLoginOrEmail(String loginOrEmail) {
+        this.loginOrEmail = loginOrEmail;
     }
 
     private boolean isEmail(String value) {
@@ -66,19 +79,18 @@ public class LoginController extends AbstractController {
 
     // Fonction de connection utilisateur
     public String seConnecter() {
-        Utilisateur utilisateur = isValidLogin(loginOrEmail, password);
-
+        utilisateur = isValidLogin(loginOrEmail, password);
         if (utilisateur != null) {
-            utilisateurController.setUtilisateur(utilisateur);
+
             FacesContextUtil.getRequest().getSession().setAttribute("utilisateur", utilisateur);
             if (utilisateur.isCommercial())
-                return utilisateurController.commercial();
+                return commercial();
 
             if (utilisateur.isComptable())
-                return utilisateurController.comptable();
+                return comptable();
 
             if (utilisateur.isAdministrateur())
-                return utilisateurController.admin();
+                return admin();
 
             return "index.xhtml";
         }
@@ -86,4 +98,21 @@ public class LoginController extends AbstractController {
         return null;
     }
 
+
+    public String seDeconnecter(){
+        FacesContextUtil.getRequest().getSession().invalidate();
+        return "/login.xhtml?faces-redirect=true";
+    }
+
+    public String admin(){
+        return "/admin/welcome.xhtml?faces-redirect=true";
+    }
+
+    public String commercial(){
+        return "/commercial/welcome.xhtml?faces-redirect=true";
+    }
+
+    public String comptable(){
+        return "/comptable/welcome.xhtml?faces-redirect=true";
+    }
 }

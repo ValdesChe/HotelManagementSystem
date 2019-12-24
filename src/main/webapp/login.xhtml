@@ -2,10 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 
     <ui:composition template="./resources/home.xhtml">
 
@@ -30,7 +27,6 @@
                                     <li class="breadcrumb-item">
                                         <a href="#">Connexion</a>
                                     </li>
-
                                 </ol>
                             </nav>
                         </div>
@@ -58,9 +54,10 @@
                                             <div class="validation" />
                                         </div>
                                     </div>
-
-                                    <div class="col-md-12">
-                                        <h:commandButton action="#{loginController.seConnecter}" class="btn btn-a mx-auto" value="CONNEXION" ajax="false" />
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6-md-12 mb-3">
+                                            <h:commandButton action="#{loginController.seConnecter}" class="btn btn-a mx-auto" value="CONNEXION" ajax="false" />
+                                        </div>
                                     </div>
                                 </div>
                             </h:form>

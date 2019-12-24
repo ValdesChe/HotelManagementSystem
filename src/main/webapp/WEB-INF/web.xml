@@ -40,6 +40,11 @@
     <filter-class>com.alphahotel.filters.AdminFilter</filter-class>
   </filter>
 
+  <filter>
+    <filter-name>CommercialFilter</filter-name>
+    <filter-class>com.alphahotel.filters.CommercialFilter</filter-class>
+  </filter>
+
 <!--
   <filter-mapping>
     <filter-name>LoginFilter</filter-name>
@@ -50,6 +55,11 @@
   <filter-mapping>
     <filter-name>AdminFilter</filter-name>
     <url-pattern>/admin/*</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>CommercialFilter</filter-name>
+    <url-pattern>/commercial/*</url-pattern>
   </filter-mapping>
   <!-- END FILTERS -->
 

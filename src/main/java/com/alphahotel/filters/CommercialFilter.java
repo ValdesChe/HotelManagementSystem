@@ -3,8 +3,6 @@ package com.alphahotel.filters;
 import com.alphahotel.model.entities.Utilisateur;
 
 import javax.servlet.*;
-
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -14,8 +12,7 @@ import java.io.IOException;
  * Created by ValdoR on 2019-12-16.
  */
 
-
-public class AdminFilter extends AbstractFilter implements Filter {
+public class CommercialFilter extends AbstractFilter implements Filter {
     public void destroy() {
     }
 
@@ -31,22 +28,22 @@ public class AdminFilter extends AbstractFilter implements Filter {
             System.out.println("request URI = " + reqURI);
             if( session != null && user != null ){
                 System.out.println("++++++++++");
-                System.out.println("--- ADMIN FILTER DETECT USER-");
+                System.out.println("--- COMMERCIAL FILTER DETECT USER-");
                 System.out.println("++++++++++");
-                if(user.isAdministrateur() && reqURI.contains("admin")){
+                if(user.isCommercial() && reqURI.contains("commercial")){
                     chain.doFilter(req, resp);
                 }
-                if(user.isCommercial()){
-                    response.sendRedirect(request.getContextPath() + "/commercial/welcome.xhtml?faces-redirect=true");
+                if(user.isAdministrateur()){
+                    response.sendRedirect(request.getContextPath() + "/admin/welcome.xhtml");
                 }
                 if(user.isComptable()){
-                    response.sendRedirect(request.getContextPath() + "/comptable/welcome.xhtml?faces-redirect=true");
+                    response.sendRedirect(request.getContextPath() + "/comptable/welcome.xhtml");
                 }
 
             }else{
 
                 System.out.println("++++++++++");
-                System.out.println("--- CHAIN FILTER ON ADMIN-");
+                System.out.println("--- CHAIN FILTER ON COMMERCIAL-");
                 System.out.println("++++++++++");
                 doLogin(req, resp, request);
             }

@@ -3,15 +3,7 @@ package com.alphahotel.model.entities;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.*;
 
 /**
  * Created by ValdoR on 2019-12-12.
@@ -25,32 +17,37 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Utilisateur implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
-    @Column(name = "login")
+    @GeneratedValue
+    @Column(name="id", nullable=false)
+    private Integer id;
+
+    @Column(name = "login", nullable = false, length = 30)
     private String login;
 
-    @Column(name = "nom")
+    @Column(name = "nom", nullable = false, length = 30)
     private String nom;
 
-    @Column(name = "prenom")
+    @Column(name = "prenom", nullable = false, length = 30)
     private String prenom;
 
-    @Column(name = "telephone")
+    @Column(name = "telephone", length = 30)
     private String telephone;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false, length = 30)
     private String email;
 
-    @Column(name = "password_hash")
+    @Column(name = "password_hash", nullable = false, length = 30)
     private String password;
 
-    @Column(name = "role")
+    @Column(name = "role", nullable = false, length = 20)
     @Enumerated(EnumType.STRING)
     private String role;
 
-    @Column(name = "status")
+    @Column(name = "status", nullable = false, length = 20)
     @Enumerated(EnumType.STRING)
-    private UtilisateurStatus status;
+    private String status;
 
 
     @Column(name = "created_at")
@@ -61,6 +58,14 @@ public class Utilisateur implements Serializable {
 
 
     public Utilisateur() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getLogin() {
@@ -135,11 +140,11 @@ public class Utilisateur implements Serializable {
         this.updated_at = updated_at;
     }
 
-    public UtilisateurStatus getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(UtilisateurStatus status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
