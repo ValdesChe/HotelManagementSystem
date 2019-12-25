@@ -1,9 +1,11 @@
 package com.alphahotel.controller;
 
 import java.io.*;
+import java.text.ParseException;
 import java.util.*;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
 import com.alphahotel.model.Item;
@@ -14,6 +16,7 @@ import com.alphahotel.model.entities.Reservation;
 import com.alphahotel.model.entities.ReservationStatus;
 import com.alphahotel.utils.FacesContextUtil;
 import com.alphahotel.utils.FilePrinterUtil;
+import com.alphahotel.utils.Helpers;
 import net.sf.dynamicreports.jasper.builder.JasperReportBuilder;
 import net.sf.dynamicreports.report.exception.DRException;
 import net.sf.jasperreports.engine.*;
@@ -31,7 +34,7 @@ import static net.sf.dynamicreports.report.builder.DynamicReports.report;
  * Created by ValdoR on 2019-12-12.
  */
 @ManagedBean(name = "facturationController")
-@SessionScoped
+@RequestScoped
 public class FacturationController extends AbstractController  implements Serializable {
     private static final long serialVersionUID = -1;
     private List<Reservation> uniqueReservationToPrint;
@@ -85,12 +88,26 @@ public class FacturationController extends AbstractController  implements Serial
         parameters.put("date_fin", reservation.getDate_fin());
         parameters.put("nbnuit", reservation.getNbnuit());
         parameters.put("total", reservation.getTotal());
-        FilePrinterUtil.generateFile("LOAD_PDF",
-                "/commercial/invoice.jasper",
-                "Facture_".concat(String.valueOf(reservation.getId())).concat("_" +reservation.getStatut()),
-                parameters,
-                beanCollectionDataSource
-        );
+        Date date = null;
+        try {
+            date = Helpers.formatDateOrFail(Helpers.actualDateTime());
+            reservation.setUpdated_at(date);
+            reservation.setStatut(ReservationStatus.ENDED.toString());
+            reservationDAO.update(reservation);
+            FilePrinterUtil.generateFile("PDF",
+                    "/reports/invoice.jasper",
+                    "Facture_".concat(String.valueOf(reservation.getId()))
+                            .concat("_" +reservation.getStatut())
+                            .concat("_" +reservation.getPrenomcl())
+                            .concat("_" +reservation.getNomcl())
+                            .concat(".pdf"),
+                    parameters
+            );
+
+            displayInfoMessage("Reservation confirmée avec succès !");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         return null;
     }

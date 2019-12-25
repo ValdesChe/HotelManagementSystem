@@ -21,10 +21,10 @@ import java.util.List;
  */
 public class FilePrinterUtil {
 
-    public static void generateFile(String typeFile, String jasperDir, String fileName, HashMap<String, Object> params, JRBeanCollectionDataSource dataSource)
+    public static void generateFile(String typeFile, String jasperDir, String fileName, HashMap<String, Object> params)
             throws JRException, IOException {
         File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath(jasperDir));
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jasper.getPath(), params, dataSource);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasper.getPath(), params, new JREmptyDataSource());
 
         List<JasperPrint> jasperPrints = new ArrayList<>();
         jasperPrints.add(jasperPrint);
