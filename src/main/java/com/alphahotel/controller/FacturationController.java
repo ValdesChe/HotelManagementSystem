@@ -3,32 +3,19 @@ package com.alphahotel.controller;
 import java.io.*;
 import java.text.ParseException;
 import java.util.*;
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
-import com.alphahotel.model.Item;
-import com.alphahotel.model.SemesterPaper;
-import com.alphahotel.model.Student;
 import com.alphahotel.model.dao.ReservationDAO;
 import com.alphahotel.model.entities.Reservation;
 import com.alphahotel.model.entities.ReservationStatus;
-import com.alphahotel.utils.FacesContextUtil;
 import com.alphahotel.utils.FilePrinterUtil;
 import com.alphahotel.utils.Helpers;
-import net.sf.dynamicreports.jasper.builder.JasperReportBuilder;
-import net.sf.dynamicreports.report.exception.DRException;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletResponse;
 import java.io.Serializable;
-import java.util.Arrays;
-
-import static net.sf.dynamicreports.report.builder.DynamicReports.report;
 
 /**
  * Created by ValdoR on 2019-12-12.

@@ -1551,7 +1551,7 @@ a:hover {
 }
 
 .COLOR_UNSPECIFIED, .COLOR_UNSPECIFIED{
-    color: #0c0edd;
+    color: #2eca6a;
 }
 /**
     Backgrounds
@@ -1573,7 +1573,7 @@ a:hover {
 }
 
 .BACKGROUND_UNSPECIFIED, .BACKGROUND_UNSPECIFIED{
-    background: #0c0edd;
+    background: #2eca6a;
     color: #ffffff;
 }
 
@@ -1762,23 +1762,23 @@ footer .credits {
 
 
 .generic_price_tag .price .sign{
-    color: #414141;
+    color: #2eca6a;
 }
 
 .generic_price_tag .price .currency{
-    color: #414141;
+    color: #2eca6a;
 }
 
 .generic_price_tag .price .cent{
-    color: #414141;
+    color: #2eca6a;
 }
 
 .generic_price_tag .month{
-    color: #414141;
+    color: #2eca6a;
 }
 
 .generic_price_tag{
-    padding: 0 0 20px;
+    padding: 0 0 40px;
 }
 
 .generic_price_tag .price{
@@ -1796,7 +1796,7 @@ footer .credits {
 .generic_price_tag .price .currency{
     font-family: "Lato",sans-serif;
     font-size: 45px;
-    font-weight: 300;
+    font-weight: 800;
     letter-spacing: -2px;
     line-height: 50px;
     padding: 0;
@@ -1806,7 +1806,7 @@ footer .credits {
 .generic_price_tag .price .cent{
     display: inline-block;
     font-family: "Lato",sans-serif;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 400;
     vertical-align: bottom;
 }

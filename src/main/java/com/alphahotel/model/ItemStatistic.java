@@ -2,16 +2,15 @@ package com.alphahotel.model;
 
 /**
  * Created by ValdoR on 2019-12-24.
- */public class SemesterPaper {
-
+ */
+public class ItemStatistic {
     private String name;
     private double mark;
 
-    public SemesterPaper() {
+    public ItemStatistic() {
     }
 
-
-    public SemesterPaper(String name, double mark) {
+    public ItemStatistic(String name, double mark) {
         this.name = name;
         this.mark = mark;
     }
@@ -31,6 +30,4 @@ package com.alphahotel.model;
     public void setMark(double mark) {
         this.mark = mark;
     }
-
-
 }
