@@ -88,7 +88,8 @@ public class FacturationController extends AbstractController  implements Serial
                             .concat("_" +reservation.getPrenomcl())
                             .concat("_" +reservation.getNomcl())
                             .concat(".pdf"),
-                    parameters
+                    parameters,
+                    null
             );
 
             displayInfoMessage("Reservation confirmée avec succès !");

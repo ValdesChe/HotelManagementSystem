@@ -5,14 +5,18 @@ package com.alphahotel.model;
  */
 public class ItemStatistic {
     private String name;
-    private double mark;
+    private Long mark;
 
     public ItemStatistic() {
     }
 
-    public ItemStatistic(String name, double mark) {
+    public ItemStatistic(String name, Long mark) {
         this.name = name;
         this.mark = mark;
+    }
+    public ItemStatistic(String name, Double mark) {
+        this.name = name;
+        this.mark = Double.doubleToLongBits(mark);
     }
 
     public String getName() {
@@ -23,11 +27,11 @@ public class ItemStatistic {
         this.name = name;
     }
 
-    public double getMark() {
+    public Long getMark() {
         return mark;
     }
 
-    public void setMark(double mark) {
+    public void setMark(Long mark) {
         this.mark = mark;
     }
 }

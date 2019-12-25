@@ -20,13 +20,11 @@ public class StatisticDAO extends HibernateDAO<ItemStatistic>{
      * @return
      */
     public List<ItemStatistic> getRevenueGroupByMonth(String year){
-        String query = "SELECT  DATE_FORMAT(date_debut, '%M %Y') AS name, " +
-                "SUM(total) AS mark " +
+        String query = "SELECT DATE_FORMAT(r.date_debut, '%M %Y') AS name, " +
+                "SUM(r.total) AS mark " +
                 "FROM Reservation r " +
-                "GROUP BY DATE_FORMAT(date_debut, '%M %Y') "
-                .concat("HAVING name LIKE \'%")
-                        .concat(year)
-                        .concat("\'");
+                "GROUP BY DATE_FORMAT(r.date_debut, '%M %Y') " ;
+                // + "WHERE name LIKE '%".concat(year).concat("'");
         List<Object> listStats = getSession()
                 .createQuery(query)
                 .list();
@@ -34,7 +32,7 @@ public class StatisticDAO extends HibernateDAO<ItemStatistic>{
 
         for (Object object : listStats) {
             Object[] result = (Object[]) object;
-            ItemStatistic itemStatistic = new ItemStatistic((String) result[0], (Long) result[1] );
+            ItemStatistic itemStatistic = new ItemStatistic((String) result[0], (Double) result[1] );
             itemStatisticList.add(itemStatistic);
         }
         return itemStatisticList;

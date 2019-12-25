@@ -3,30 +3,30 @@ package com.alphahotel.model;
 import java.util.List;
 
 public class Statistic {
-    private String graphName;
-    private List<ItemStatistic> itemStatisticList;
+    private String graphDescription;
+    private List<ItemStatistic> listOfRevenues;
 
     public Statistic() {
     }
 
-    public Statistic(String graphName, List<ItemStatistic> itemStatisticList) {
-        this.graphName = graphName;
-        this.itemStatisticList = itemStatisticList;
+    public Statistic(String graphDescription, List<ItemStatistic> listOfRevenues) {
+        this.graphDescription = graphDescription;
+        this.listOfRevenues = listOfRevenues;
     }
 
-    public String getGraphName() {
-        return graphName;
+    public String getGraphDescription() {
+        return graphDescription;
     }
 
-    public void setGraphName(String graphName) {
-        this.graphName = graphName;
+    public void setGraphDescription(String graphDescription) {
+        this.graphDescription = graphDescription;
     }
 
-    public List<ItemStatistic> getItemStatisticList() {
-        return itemStatisticList;
+    public List<ItemStatistic> getListOfRevenues() {
+        return listOfRevenues;
     }
 
-    public void setItemStatisticList(List<ItemStatistic> itemStatisticList) {
-        this.itemStatisticList = itemStatisticList;
+    public void setListOfRevenues(List<ItemStatistic> listOfRevenues) {
+        this.listOfRevenues = listOfRevenues;
     }
 }
