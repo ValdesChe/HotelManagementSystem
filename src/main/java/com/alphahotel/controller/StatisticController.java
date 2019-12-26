@@ -98,6 +98,35 @@ public class StatisticController extends AbstractController  implements Serializ
     }
 
 
+    public void printFinanceStatExcell(String year) {
+        String graphName = "Finances des reservations de l'année ".concat(year);
+        List<ItemStatistic> itemStatisticList = fetchItemStatisticsList(year);
+        setItemStatisticList(itemStatisticList);
+        Statistic statistic = new Statistic(graphName, itemStatisticList);
+        ArrayList<Statistic> statistics = new ArrayList<Statistic>();
+        statistics.add(statistic);
+        beanCollectionDataSource = new JRBeanCollectionDataSource(statistics);
+        parameters = new HashMap<>();
+        parameters.put("IMAGE_PATH",
+                FacesContext.getCurrentInstance().getExternalContext().getRealPath("/resources/images"));
+
+        try {
+            FilePrinterUtil.generateFile("XLS",
+                    "/reports/finance_statistics.jasper",
+                    graphName.concat(".xls"),
+                    parameters,
+                    beanCollectionDataSource
+            );
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JRException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public JRBeanCollectionDataSource getBeanCollectionDataSource() {
         return beanCollectionDataSource;
     }
@@ -126,4 +155,5 @@ public class StatisticController extends AbstractController  implements Serializ
     public void setYearsList(List<ItemStatistic> yearsList) {
         this.yearsList = yearsList;
     }
+
 }

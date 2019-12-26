@@ -1753,6 +1753,13 @@ footer .credits {
     border-radius: 0;
 }
 
+#javax_faces_developmentstage_messages {
+    position: absolute;
+    width:150px;
+    height:auto;
+
+}
+
 .btn.btn-b-logout:hover {
     background-color: #caa707;
     color: #ffffff;

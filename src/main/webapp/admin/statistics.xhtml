@@ -28,6 +28,7 @@
 							<div class="card col-md-3" style="">
 								<div class="card-body">
 									<div class="generic_price_tag clearfix">
+										<span class="sign">MAD</span>
 										<span class="price">
 											<span class="currency">
 												<h:outputText value="#{yearItem.name}">
@@ -45,8 +46,9 @@
 									</div>
 
 									<h:form id="frmLogin" class="form-a contactForm">
-										<h:commandButton action="#{statisticController.printFinanceStatPdf(yearItem.name)}" class="btn btn-a mx-auto" value="Imprimer" />
-										<h:commandButton action="#{statisticController.printFinanceStatPdf(yearItem.name)}" class="btn btn-a fa fa-download mx-auto"/>
+										<h:commandButton action="#{statisticController.printFinanceStatPdf(yearItem.name)}" class="btn btn-a mx-auto" value="Imprimer PDF" />
+										<br/>
+										<h:commandButton action="#{statisticController.printFinanceStatExcell(yearItem.name)}" class="btn btn-a mx-auto" value="Imprimer EXCEL"/>
 									</h:form>
 								</div>
 							</div>

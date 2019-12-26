@@ -44,6 +44,10 @@
     <filter-name>CommercialFilter</filter-name>
     <filter-class>com.alphahotel.filters.CommercialFilter</filter-class>
   </filter>
+  <filter>
+    <filter-name>ComptableFilter</filter-name>
+    <filter-class>com.alphahotel.filters.ComptableFilter</filter-class>
+  </filter>
 
 <!--
   <filter-mapping>
@@ -60,6 +64,11 @@
   <filter-mapping>
     <filter-name>CommercialFilter</filter-name>
     <url-pattern>/commercial/*</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>ComptableFilter</filter-name>
+    <url-pattern>/comptable/*</url-pattern>
   </filter-mapping>
   <!-- END FILTERS -->
 

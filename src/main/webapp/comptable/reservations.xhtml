@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="../resources/commercialpage.xhtml">
+
+		<ui:define name="title">Alpha HOTEL | Bienvenue</ui:define>
+		<ui:define name="content">
+
+			<section class="intro-single">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 col-lg-8">
+							<div class="title-single-box">
+								<h1 class="title-single">Toutes les reservations</h1>
+							</div>
+						</div>
+						<div class="col-md-12 col-lg-4">
+							<nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item">
+										<a href="#">Accueil</a>
+									</li>
+									<li class="breadcrumb-item">
+										<a href="#">Reservations</a>
+									</li>
+
+									<li class="breadcrumb-item">
+										<a href="#">Liste</a>
+									</li>
+
+								</ol>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</section>
+			<div class="container p-3">
+				<div class="row">
+					<ui:repeat value="#{reservationController.reservationListToBePrinted}" var="reservation">
+                        <div class="col-sm-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3>#{reservation.nomcl} #{reservation.prenomcl}</h3>
+                                    <h5>
+                                        <h:outputText value="#{reservation.telephone}"/>
+                                    </h5>
+                                    <h6 class="card-title">
+                                        <h:outputText value="#{reservation.email}"/>
+                                    </h6>
+                                    <hr/>
+                                        <!--PRICE START-->
+                                        <div class="generic_price_tag clearfix">
+                                            <span class="price">
+                                                <span class="sign">MAD</span>
+                                                <span class="currency">
+                                                    <h:outputText value="#{reservation.total}">
+                                                        <f:convertNumber type="number"
+                                                                         maxIntegerDigits="5"
+                                                                         minFractionDigits="0"
+                                                                         maxFractionDigits="0"/>
+                                                    </h:outputText>
+                                                </span>
+                                                <span class="cent">
+                                                    .<h:outputText value="#{reservation.total}">
+                                                        <f:convertNumber type="number"
+                                                                         minIntegerDigits="0"
+                                                                         maxIntegerDigits="0"
+                                                                         maxFractionDigits="3"/>
+                                                    </h:outputText>
+                                                </span>
+                                                <br/>
+                                                <span class="month"> / #{reservation.nbnuit} NUIT(S)</span>
+                                            </span>
+                                        </div>
+                                        <!--//PRICE END-->
+
+                                    <p class="card-text">
+                                        <h:outputText value = "#{reservation.date_debut}" >
+                                            <f:convertDateTime pattern = "dd-MM-yyyy HH:mm" />
+                                        </h:outputText>
+                                        <br/>
+                                        <h:outputText value = "#{reservation.date_fin}" >
+                                            <f:convertDateTime pattern = "dd-MM-yyyy HH:mm" />
+                                        </h:outputText>
+                                    </p>
+                                    <div class="btn-group btn-group-or" role="group">
+                                        <button class="btn btn-secondary">Annuler</button>
+                                        <div class="or"></div>
+                                        <h:form>
+                                            <h:commandButton action="#{reservationController.confirmReservationToPrint(reservation)}" class="btn bg-b" value="Confirmer" />
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+					</ui:repeat>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</html>

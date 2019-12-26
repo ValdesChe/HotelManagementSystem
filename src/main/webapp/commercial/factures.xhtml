@@ -43,22 +43,43 @@
 					<div class="col-md-12 d-inline-flex">
 						<ui:repeat value="#{facturationController.listOfReservationsToPrint}" var="reservation">
 							<div class="col-md-3">
-								<div class="card-box-a card-shadow" title="#{reservation.date_debut} - #{reservation.date_fin} ">
-									<div class="img-box-a">
-										<img src="#{request.getContextPath()}/resources/images/property-4.jpg" alt="" class="img-a img-fluid"/>
-									</div>
-									<div class="card-overlay">
-										<div class="card-overlay-a-content">
-											<div class="card-header-a">
-												<h2 class="card-title-a">
-													<a href="#">
-														<span class="btn">#{reservation.statut}</span>
-														<br/>
-														#{reservation.nomcl} #{reservation.prenomcl}
-													</a>
-												</h2>
-											</div>
-											<div class="card-body-a">
+								<div class="card">
+									<div class="card-body">
+										<h3>#{reservation.nomcl} #{reservation.prenomcl}</h3>
+										<h5>
+											<h:outputText value="#{reservation.telephone}"/>
+										</h5>
+										<h6 class="card-title">
+											<h:outputText value="#{reservation.email}"/>
+										</h6>
+										<hr/>
+										<!--PRICE START-->
+										<div class="generic_price_tag clearfix">
+                                            <span class="price">
+                                                <span class="sign">MAD</span>
+                                                <span class="currency">
+                                                    <h:outputText value="#{reservation.total}">
+                                                        <f:convertNumber type="number"
+																		 maxIntegerDigits="5"
+																		 minFractionDigits="0"
+																		 maxFractionDigits="0"/>
+                                                    </h:outputText>
+                                                </span>
+                                                <span class="cent">
+                                                    .<h:outputText value="#{reservation.total}">
+                                                        <f:convertNumber type="number"
+																		 minIntegerDigits="0"
+																		 maxIntegerDigits="0"
+																		 maxFractionDigits="3"/>
+                                                    </h:outputText>
+                                                </span>
+                                                <br/>
+                                                <span class="month"> / #{reservation.nbnuit} NUIT(S)</span>
+                                            </span>
+										</div>
+										<!--//PRICE END-->
+
+										<div class="card-text">
 												<!--PRICE START-->
 												<div class="generic_price_tag clearfix">
 													<span class="price">
@@ -85,7 +106,6 @@
 												<h:form id="frmLogin" class="form-a contactForm">
 													<h:commandButton action="#{facturationController.printReservation(reservation)}" class="btn btn-a mx-auto" value="Facturer" />
 												</h:form>
-											</div>
 										</div>
 									</div>
 								</div>
