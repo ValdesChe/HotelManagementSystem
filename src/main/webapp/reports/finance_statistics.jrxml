@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="finance_statistics" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="df6ceffb-5a11-43af-b816-8d41f4ced922">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="ChartDataset" uuid="ca733987-5862-4392-a087-f9de3f939412">
+		<field name="name" class="java.lang.String"/>
+		<field name="mark" class="java.lang.Long"/>
+	</subDataset>
+	<parameter name="IMAGE_PATH" class="java.lang.String"/>
+	<field name="graphDescription" class="java.lang.String"/>
+	<field name="listOfRevenues" class="java.util.List"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="86" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="80" width="556" height="1" uuid="14782e86-d8b6-4a1b-8669-cd426490b6f6">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<staticText>
+				<reportElement x="378" y="10" width="60" height="20" uuid="b7071ea8-ee3d-46af-9d4c-141fe4ae7a5a"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<textField textAdjust="StretchHeight" pattern="EEEEE dd/MM/YYYY">
+				<reportElement x="443" y="10" width="109" height="20" uuid="0d3fb9a7-6e5c-4ba3-84eb-f86e9b469083"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center">
+				<reportElement x="0" y="0" width="65" height="60" uuid="a79e744d-3c05-4edb-9633-40cc90609106"/>
+				<imageExpression><![CDATA[$P{IMAGE_PATH} + "/invoice_logo.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="95" y="0" width="210" height="25" uuid="67657047-67cb-42bf-8077-bd7d11452705">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ALPHA HOTEL s.a.r.l]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="95" y="55" width="205" height="15" uuid="001c80a6-4526-426f-8063-c7fece13b147"/>
+				<text><![CDATA[+212 (0) 627 851 670]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="95" y="25" width="205" height="15" uuid="00c4b039-7fa2-449c-a70c-0f2cc4dcd403"/>
+				<text><![CDATA[Avenue des FAR, Rue 15]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="95" y="40" width="205" height="15" uuid="932f0998-0c72-4334-a10c-307d63d405c2"/>
+				<text><![CDATA[Tetouan, MAROC]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="77" splitType="Stretch">
+			<staticText>
+				<reportElement x="55" y="4" width="410" height="30" uuid="0ca520b3-de91-4e2a-9787-8bd19da839a0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Évolution financière des reservations]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="126" y="50" width="305" height="20" forecolor="#F01AD3" uuid="bb528f92-db49-4bcd-8c35-8dd20b95edc3"/>
+				<textElement textAlignment="Center">
+					<font size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{graphDescription}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="270" splitType="Stretch">
+			<bar3DChart>
+				<chart evaluationTime="Report">
+					<reportElement x="10" y="0" width="530" height="270" uuid="f5bb7adb-f134-4577-97b8-fc79708139e6"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<dataset resetType="Report">
+						<datasetRun subDataset="ChartDataset" uuid="3312c0b5-3528-4e38-b22e-fb0a4a012c4e"/>
+					</dataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{name}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{name}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{mark}]]></valueExpression>
+						<labelExpression><![CDATA[$F{name}+" gets "+$F{mark}]]></labelExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</bar3DChart>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

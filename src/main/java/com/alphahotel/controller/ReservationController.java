@@ -32,8 +32,11 @@ public class ReservationController extends AbstractController  implements Serial
 
     private List<Reservation> reservationList;
 
+    private List<Reservation> reservationListToBePrinted;
+
     public ReservationController() {
         reservationDAO = new ReservationDAO();
+        reservation = new Reservation();
     }
 
 
@@ -44,6 +47,7 @@ public class ReservationController extends AbstractController  implements Serial
             reservation.setUpdated_at(date);
             reservation.setStatut(ReservationStatus.PENDING.toString());
             reservation.setNbnuit(Math.toIntExact(Helpers.diffDatesInDays(reservation.getDate_debut(), reservation.getDate_fin())));
+            reservation.setTotal(reservation.getNbnuit()*250);
             try {
                 reservationDAO.save(reservation);
                 reservation = new Reservation();
@@ -96,6 +100,23 @@ public class ReservationController extends AbstractController  implements Serial
         } else {
             displayErrorMessage("La reservation a déja expirée !");
         }
+    }
+
+    public void confirmReservationToPrint(Reservation reservation) throws ParseException {
+
+            Date date = Helpers.formatDateOrFail(Helpers.actualDateTime());
+            reservation.setUpdated_at(date);
+            reservation.setStatut(ReservationStatus.TO_PRINT.toString());
+            reservation.setComptable_bill(loginController.getUtilisateur());
+            try {
+                reservationDAO.update(reservation);
+                displayInfoMessage("Reservation confirmée avec succès !");
+                FacesContextUtil.redirect("/commercial/reservations.xhtml");
+            }
+            catch (Exception e){
+                e.printStackTrace();
+                displayErrorMessage("Une érreur est survenue lors de la confirmation de la reservation!");
+            }
     }
 
     private boolean isValidReservation(Reservation reservation) {
@@ -172,6 +193,14 @@ public class ReservationController extends AbstractController  implements Serial
 
     public void setReservationList(List<Reservation> reservationList) {
         this.reservationList = reservationList;
+    }
+
+    public List<Reservation> getReservationListToBePrinted() {
+        return reservationDAO.findByStatus(ReservationStatus.CONFIRM.toString());
+    }
+
+    public void setReservationListToBePrinted(List<Reservation> reservationListToBePrinted) {
+        this.reservationListToBePrinted = reservationListToBePrinted;
     }
 
     public void setLoginController(LoginController loginController) {

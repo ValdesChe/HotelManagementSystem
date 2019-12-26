@@ -7,7 +7,7 @@
 
 	<ui:composition template="../resources/commercialpage.xhtml">
 
-		<ui:define name="title">Alpha HOTEL | Bienvenue</ui:define>
+		<ui:define name="title">Alpha HOTEL | Statistiques </ui:define>
 		<ui:define name="content">
 
 			<section class="intro-single">
@@ -15,66 +15,47 @@
 					<div class="row">
 						<div class="col-md-12 col-lg-8">
 							<div class="title-single-box">
-								<h1 class="title-single">Toutes nos chambres</h1>
+								<h3 class="title-single">Statistiques de reservation</h3>
 							</div>
-						</div>
-						<div class="col-md-12 col-lg-4">
-							<nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
-								<ol class="breadcrumb">
-									<li class="breadcrumb-item">
-										<a href="#">Accueil</a>
-									</li>
-									<li class="breadcrumb-item">
-										<a href="#">Chambres</a>
-									</li>
-
-									<li class="breadcrumb-item">
-										<a href="#">Liste</a>
-									</li>
-
-								</ol>
-							</nav>
 						</div>
 					</div>
 				</div>
 			</section>
 			<div class="container p-3">
 				<div class="row">
-					<div class="col-md-12">
-						<ui:repeat value="#{chambreController.listChambres}" var="chambre">
+					<div class="col-md-12 d-inline-flex">
+						<ui:repeat value="#{statisticController.yearsList}" var="yearItem">
 							<div class="card col-md-3" style="">
 								<div class="card-body">
 									<div class="generic_price_tag clearfix">
+										<span class="sign">MAD</span>
 										<span class="price">
 											<span class="currency">
-												<h:outputText value="#{chambre.prix_min}">
+												<h:outputText value="#{yearItem.name}">
 													<f:convertNumber type="number"
 																	 maxIntegerDigits="5"
 																	 minFractionDigits="0"
 																	 maxFractionDigits="0"/>
 												</h:outputText>
 											</span>
+											<br/>
 											<span class="cent">
-												<h:outputText value="#{chambre.prix_min}">
-													<f:convertNumber type="number"
-																	 maxIntegerDigits="0"
-																	 minIntegerDigits="0"
-																	 minFractionDigits="2"
-																	 maxFractionDigits="3"/>
-												</h:outputText>
+												#{yearItem.mark} Reservations
 											</span>
 										</span>
 									</div>
-									<div class="d-flex">
-										<span class="btn BACKGROUND_#{chambre.statut}">
-											#{chambre.statut}
-										</span>
-									</div>
+
+									<h:form id="frmLogin" class="form-a contactForm">
+										<h:commandButton action="#{statisticController.printFinanceStatPdf(yearItem.name)}" class="btn btn-a mx-auto" value="Imprimer PDF" />
+										<br/>
+										<h:commandButton action="#{statisticController.printFinanceStatExcell(yearItem.name)}" class="btn btn-a mx-auto" value="Imprimer EXCEL"/>
+									</h:form>
 								</div>
 							</div>
 						</ui:repeat>
 					</div>
-				</div>
+
+                </div>
 			</div>
 		</ui:define>
 	</ui:composition>

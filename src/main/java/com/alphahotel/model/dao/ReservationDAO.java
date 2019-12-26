@@ -1,10 +1,12 @@
 package com.alphahotel.model.dao;
 
+import com.alphahotel.model.ItemStatistic;
 import com.alphahotel.model.entities.Reservation;
 import org.hibernate.*;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Property;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +23,7 @@ public class ReservationDAO extends HibernateDAO<Reservation>{
                 .setParameter("status_reservation", status)
                 .list();
     }
+
 
 
 }

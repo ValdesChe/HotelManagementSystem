@@ -40,7 +40,7 @@
 			</section>
 			<div class="container p-3">
 				<div class="row">
-					<ui:repeat value="#{reservationController.reservationList}" var="reservation">
+					<ui:repeat value="#{reservationController.reservationListToBePrinted}" var="reservation">
                         <div class="col-sm-4">
                             <div class="card">
                                 <div class="card-body">
@@ -91,7 +91,7 @@
                                         <button class="btn btn-secondary">Annuler</button>
                                         <div class="or"></div>
                                         <h:form>
-                                            <h:commandButton action="#{reservationController.confirmReservation(reservation)}" class="btn bg-b" value="Confirmer" />
+                                            <h:commandButton action="#{reservationController.confirmReservationToPrint(reservation)}" class="btn bg-b" value="Confirmer" />
                                         </h:form>
                                     </div>
                                 </div>
