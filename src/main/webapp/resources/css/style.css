@@ -2369,3 +2369,43 @@ table.table .avatar {
     font-size: 13px;
 }
 
+.text-tracked {
+    letterspacing: 0.1em;
+}
+
+.text-size-2 {
+    font-size: 2rem;
+}
+.text-size-3 {
+    font-size: 1.3rem;
+}
+
+.z-index-1 {
+    z-index: 1;
+}
+.z-index-2 {
+    z-index: 2;
+}
+
+.h-100vh {
+    height: 100vh;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+.overflow-auto {
+    overflow: auto;
+}
+
+.opacity-25 {
+    opacity: 0.25;
+}
+
+.opacity-50 {
+    opacity: 0.5;
+}
+
+.opacity-75 {
+    opacity: 0.75;
+}

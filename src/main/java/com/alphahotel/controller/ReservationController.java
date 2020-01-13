@@ -23,7 +23,7 @@ import java.util.List;
 @RequestScoped
 public class ReservationController extends AbstractController  implements Serializable {
     private final List<String> reservationStatus = Arrays.asList(Constants.reservationStatusList);
-    private Reservation reservation;
+    private Reservation reservation ;
     private ReservationDAO reservationDAO;
     private long nbnuit = 0;
 
@@ -103,7 +103,6 @@ public class ReservationController extends AbstractController  implements Serial
     }
 
     public void confirmReservationToPrint(Reservation reservation) throws ParseException {
-
             Date date = Helpers.formatDateOrFail(Helpers.actualDateTime());
             reservation.setUpdated_at(date);
             reservation.setStatut(ReservationStatus.TO_PRINT.toString());
@@ -162,6 +161,24 @@ public class ReservationController extends AbstractController  implements Serial
         }
         return true;
     }
+
+    public Long getCountReservationMade(){
+        return reservationDAO.getCountReservationByStatus(ReservationStatus.ENDED.toString());
+    }
+
+    public Double getRevenueTotal(){
+        return reservationDAO.getTotalRevenueByStatus(ReservationStatus.ENDED.toString());
+    }
+
+    public Double getRevenueTotalCancelled(){
+        return reservationDAO.getTotalRevenueByStatus(ReservationStatus.CANCELLED.toString());
+    }
+
+    public Double getRevenueTotalOther(){
+        return reservationDAO.getTotalRevenueByStatus(ReservationStatus.TO_PRINT.toString()) +
+                reservationDAO.getTotalRevenueByStatus(ReservationStatus.CONFIRM.toString());
+    }
+
 
     public List<String> getReservationStatus() {
         return reservationStatus;

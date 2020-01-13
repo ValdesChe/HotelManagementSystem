@@ -14,10 +14,14 @@ import java.io.Serializable;
  (hibernate.cfg.xml) d'être associé à la source de données. Elle fournit des objets Session pour
  manipuler les données.
  */
-@SuppressWarnings("ALL")
+@SuppressWarnings({ "all", "deprecation" })
 public final class HibernateUtils implements Serializable {
 
-    private Session session;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 5612803053557016586L;
+	private Session session;
     private Transaction transaction;
     private static SessionFactory sessionFactory;
     private static String fileName = "hibernate.cfg.xml";

@@ -12,7 +12,10 @@ import java.util.Date;
 @Entity
 @Table(name="reservation")
 @NamedQueries({
-        @NamedQuery(name = "Reservation.findByStatus", query = "SELECT r FROM Reservation r WHERE r.statut = :status_reservation ORDER BY r.created_at ASC, r.date_debut ASC ")
+        @NamedQuery(name = "Reservation.findByStatus", query = "SELECT r FROM Reservation r WHERE r.statut = :status_reservation ORDER BY r.created_at ASC, r.date_debut ASC "),
+        @NamedQuery(name = "Reservation.total.findByStatus", query = "SELECT COUNT(r) AS total FROM Reservation r WHERE r.statut = :status_reservation"),
+        @NamedQuery(name = "Reservation.totalRevenues.findByStatus", query = "SELECT SUM(r.total) AS total FROM Reservation r WHERE r.statut = :status_reservation"),
+        @NamedQuery(name = "Reservation.totalRevenues.findByStatusYear", query = "SELECT SUM(r.total) AS total FROM Reservation r WHERE r.statut = :status_reservation AND DATE_FORMAT(r.date_debut, '%Y') LIKE :year")
 })
 public class Reservation implements Serializable {
 

@@ -1,6 +1,7 @@
 package com.alphahotel.controller;
 
 import com.alphahotel.model.dao.UtilisateurDAO;
+import com.alphahotel.model.entities.ReservationStatus;
 import com.alphahotel.model.entities.Role;
 import com.alphahotel.model.entities.Utilisateur;
 import com.alphahotel.model.entities.UtilisateurStatus;
@@ -52,6 +53,17 @@ public class UserManagementController extends AbstractController  implements Ser
 
     public void setSelectedUtilisateur(Utilisateur selectedUtilisateur) {
         this.selectedUtilisateur = selectedUtilisateur;
+    }
+
+
+    public Long getCountCommercial(){
+        UtilisateurDAO utilisateurDAO =new UtilisateurDAO();
+        return utilisateurDAO.getCountUtilisateurByRole(Role.COMMERCIAL.toString());
+    }
+
+    public Long getCountComptable(){
+        UtilisateurDAO utilisateurDAO =new UtilisateurDAO();
+        return utilisateurDAO.getCountUtilisateurByRole(Role.COMPTABLE.toString());
     }
 
     public void fetchUtilisateurList() {

@@ -8,14 +8,84 @@
 	<ui:composition template="../resources/adminpage.xhtml">
 		<ui:define name="title">Alpha HOTEL | Bienvenue</ui:define>
 		<ui:define name="content">
-			<section class="intro-single">
+			<section class="intro-single ml-0 mr-0">
 				<div class="container">
 					<div class="row">
-						<h1>
-							Bienvenue
-							#{loginController.utilisateur.role}
-							#{loginController.utilisateur.prenom}
-						</h1>
+						<div class="bg-light position-relative">
+							<div class="p-3 h-100 position-relative z-index-2 overflow-auto  py-3">
+								<div class="row">
+								<h4 class="display-4 p-2 text-size-2">
+									Statistiques de la <span class="text-muted">plateforme <br/> AlphaHotel</span>
+								</h4>
+								<!-- Revenue entreprise indicator -->
+								<div class="p-2 bg-white rounded p-3 m-3 shadow-sm animated flipInX delay-3">
+									<div class="text-uppercase text-tracked text-muted mb-2">
+										BENEFICES
+									</div>
+									<div class="badge badge-success text-size-2 text-monospace mx-auto">
+										#{reservationController.getRevenueTotal()} <span class="opacity-50 small">MAD</span>
+									</div>
+									<div class="text-muted small mt-1">
+										<span class="text-danger">
+										  	 <i class="fas fa fa-long-arrow-alt-down"/>
+											 <h:outputText value="#{reservationController.getRevenueTotalOther() }">
+												 <f:convertNumber type="number"
+																  minIntegerDigits="2"
+																  minFractionDigits="2"
+																  maxFractionDigits="3"/>
+											 </h:outputText>
+											 <span class="opacity-50 small">MAD</span>
+										</span> entrées à encaisser
+									</div>
+								</div>
+
+								<!-- Perte warning -->
+								<div class="p-2 bg-warning text-black rounded m-3 p-3 shadow-sm text-center position-relative animated flipInX delay-1 overflow-hidden">
+									<div class="text-uppercase text-tracked mb-2">PERTES FINANCIÈRES</div>
+									<div class="badge badge-danger text-size-2 text-monospace mx-auto">
+										#{reservationController.getRevenueTotalCancelled()}
+										<span class="opacity-50 small">MAD</span>
+									</div>
+								</div>
+									<br/>
+								<!-- Partner total indicator -->
+								<div class="d-flex flex-column p-3 m-3 bg-white shadow-sm rounded animated flipInX delay-4">
+									<div class="text-uppercase text-tracked text-muted mb-2">COMPTABLES</div>
+									<div class="d-flex align-items-center text-size-3">
+										<div class="text-monospace">
+											<span class="text-size-2 ">
+												#{userManagerController.getCountComptable()}
+											</span>
+										</div>
+									</div>
+								</div>
+
+								<!--  Clients total indicator -->
+								<div class="d-flex flex-column p-3 m-3 bg-white shadow-sm rounded animated flipInX delay-4">
+									<div class="text-uppercase text-tracked text-muted mb-2">COMMERCIAUX</div>
+									<div class="d-flex align-items-center text-size-3">
+										<div class="text-monospace">
+											<span class="text-size-2 ">
+												#{userManagerController.getCountCommercial()}
+											</span>
+										</div>
+									</div>
+								</div>
+
+								<!--  Total of cars  -->
+								<div class="d-flex flex-column p-3 m-3 bg-white shadow-sm rounded animated flipInX delay-5">
+									<div class="text-uppercase text-tracked text-muted mb-2">CLIENTS</div>
+									<div class="d-flex align-items-center text-size-3">
+										<i class="fas fa fa-door-open opacity-25 mr-2"/>
+										<div class="text-monospace">
+											<span class="text-size-2 ">#{reservationController.getCountReservationMade()}</span>
+										</div>
+										<i class="fas fa fa-arrow-up text-success ml-2"/>
+									</div>
+								</div>
+							</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</section>

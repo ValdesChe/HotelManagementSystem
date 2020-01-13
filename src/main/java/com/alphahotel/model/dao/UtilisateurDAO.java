@@ -22,4 +22,16 @@ public class UtilisateurDAO extends HibernateDAO<Utilisateur>{
     public Utilisateur findByEmail(String email){
         return (Utilisateur) getSession().getNamedQuery("Utilisateur.findByEmail").setParameter("email", email).uniqueResult();
     }
+
+
+    // Total des utilisateurs par role
+    public Long getCountUtilisateurByRole(String role){
+        Long count = (Long) getSession()
+                .getNamedQuery("Utilisateur.countByRole")
+                .setParameter("role", role)
+                .uniqueResult();
+        if(count == null)
+            return Long.getLong("0");
+        return  count;
+    }
 }

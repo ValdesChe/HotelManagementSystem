@@ -4,23 +4,24 @@ import com.alphahotel.model.dao.ChambreDAO;
 import com.alphahotel.model.entities.*;
 import com.alphahotel.model.entities.Chambre;
 import com.alphahotel.utils.Constants;
+import com.alphahotel.utils.Helpers;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
-import java.sql.Date;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
  * Created by ValdoR on 2019-12-12.
  */
 @ManagedBean(name = "chambreController")
-@SessionScoped
+@RequestScoped
 public class ChambreController extends AbstractController  implements Serializable {
 
     private List<String> bedroomTypes = Arrays.asList(Constants.bedroomTypes);
@@ -62,6 +63,7 @@ public class ChambreController extends AbstractController  implements Serializab
     }
 
     public List<Chambre> getListChambres() {
+        fetchChambreList();
         return listChambres;
     }
 
@@ -82,8 +84,9 @@ public class ChambreController extends AbstractController  implements Serializab
         if (selectedChambre != null ) {
             selectedChambre.setUtilisateur(loginController.getUtilisateur());
             try {
-                /*selectedChambre.setCreated_at((Date) Date.from(Instant.now()));
-                selectedChambre.setUpdated_at((Date) Date.from(Instant.now()));*/
+                Date date = Helpers.formatDateOrFail(Helpers.actualDateTime());
+                selectedChambre.setCreated_at(date);
+                selectedChambre.setUpdated_at(date);
                 chambreDAO.save(selectedChambre);
                 displayInfoMessage("Chambre créée avec succès !");
                 selectedChambre = new Chambre();

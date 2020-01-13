@@ -40,36 +40,33 @@
 			</section>
 			<div class="container p-3">
 				<div class="row">
-					<div class="col-md-12">
+					<div class="col-md-12 d-inline-flex m-1">
 						<ui:repeat value="#{chambreController.listChambres}" var="chambre">
-							<div class="card col-md-3" style="">
-								<div class="card-body">
-									<div class="generic_price_tag clearfix">
-										<span class="price">
-											<span class="currency">
-												<h:outputText value="#{chambre.prix_min}">
-													<f:convertNumber type="number"
-																	 maxIntegerDigits="5"
-																	 minFractionDigits="0"
-																	 maxFractionDigits="0"/>
-												</h:outputText>
-											</span>
-											<span class="cent">
-												<h:outputText value="#{chambre.prix_min}">
-													<f:convertNumber type="number"
-																	 maxIntegerDigits="0"
-																	 minIntegerDigits="0"
-																	 minFractionDigits="2"
-																	 maxFractionDigits="3"/>
-												</h:outputText>
-											</span>
-										</span>
-									</div>
-									<div class="d-flex">
-										<span class="btn BACKGROUND_#{chambre.statut}">
-											#{chambre.statut}
-										</span>
-									</div>
+							<div class="p-2 bg-white rounded p-3 m-3 shadow-sm animated flipInX delay-3">
+								<div class="text-uppercase text-tracked text-muted mb-2">
+									#{chambre.libele}
+								</div>
+								<div class="badge badge-success BACKGROUND_#{chambre.statut} text-size-2 text-monospace mx-auto">
+									<h:outputText value="#{chambre.prix_min}">
+										<f:convertNumber type="number"
+														 maxIntegerDigits="6"
+														 minFractionDigits="2"
+														 maxFractionDigits="3"/>
+									</h:outputText>
+									<span class="opacity-50 small">MAD</span>
+								</div>
+								<div class="text-muted small mt-1">
+									<span class="text-danger">
+										Type |
+									</span>
+									<span class="text-danger">
+										#{chambre.type}
+									</span>
+								</div>
+								<div class="text-muted small mt-1">
+									<span class="BACKGROUND_#{chambre.statut}">
+										#{chambre.statut}
+									</span>
 								</div>
 							</div>
 						</ui:repeat>
