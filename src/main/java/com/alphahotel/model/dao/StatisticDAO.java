@@ -2,6 +2,7 @@ package com.alphahotel.model.dao;
 
 import com.alphahotel.model.ItemStatistic;
 import com.alphahotel.model.entities.Reservation;
+import org.hibernate.Query;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,29 +14,42 @@ public class StatisticDAO extends HibernateDAO<ItemStatistic>{
     public StatisticDAO() {
         super(ItemStatistic.class);
     }
+    public List<ItemStatistic> parseResultSetStat(List listStats, String type) {
+        List<ItemStatistic> itemStatisticList = new ArrayList<ItemStatistic>();
 
+        for (Object object : listStats) {
+            Object[] result = (Object[]) object;
+            ItemStatistic itemStatistic = null;
+            if(type.equals("LONG"))
+                itemStatistic = new ItemStatistic((String) result[0], (Long) result[1]);
+            else if(type.equals("DOUBLE")) {
+                Long total = (new Double(result[1].toString())).longValue();
+                itemStatistic = new ItemStatistic((String) result[0], total);
+            }else
+                itemStatistic = new ItemStatistic((String) result[0], (Long) result[1]);
+            itemStatisticList.add(itemStatistic);
+        }
+        return itemStatisticList;
+    }
     /**
      * Give a list of Statistic groupBy Month for a special year
      * @param year
      * @return
      */
     public List<ItemStatistic> getRevenueGroupByMonth(String year){
+        // Query query1 = getSession().createSQLQuery("SELECT ");
         String query = "SELECT DATE_FORMAT(r.date_debut, '%M %Y') AS name, " +
-                "SUM(r.total) AS mark, DATE_FORMAT(r.date_debut, '%Y')  " +
+                "SUM(r.total) AS mark " +
                 "FROM Reservation r " +
-                "GROUP BY DATE_FORMAT(r.date_debut, '%M %Y') " +
-                " WHERE DATE_FORMAT(r.date_debut, '%Y') LIKE '%".concat(year).concat("'");
+                " WHERE DATE_FORMAT(r.date_debut, '%M %Y') LIKE :year " +
+                "GROUP BY DATE_FORMAT(r.date_debut, '%M %Y') ";
+        System.out.println(query);
         List<Object> listStats = getSession()
                 .createQuery(query)
+                .setParameter("year", "%" + year + "%")
                 .list();
-        List<ItemStatistic> itemStatisticList = new ArrayList<ItemStatistic>();
+        return parseResultSetStat(listStats, "DOUBLE");
 
-        for (Object object : listStats) {
-            Object[] result = (Object[]) object;
-            ItemStatistic itemStatistic = new ItemStatistic((String) result[0], (Double) result[1] );
-            itemStatisticList.add(itemStatistic);
-        }
-        return itemStatisticList;
     }
 
     /**
@@ -46,19 +60,26 @@ public class StatisticDAO extends HibernateDAO<ItemStatistic>{
         String query = "SELECT c.libele AS name, " +
                 "COUNT(r.chambre_id) AS mark " +
                 "FROM Reservation r, Chambre c " +
-                "GROUP BY name " +
-                " WHERE r.chambre_id = chambre.id ";
+                " WHERE r.chambre_id = c.id " +
+                " GROUP BY  c.libele " ;
         List<Object> listStats = getSession()
                 .createQuery(query)
                 .list();
-        List<ItemStatistic> itemStatisticList = new ArrayList<ItemStatistic>();
+        return parseResultSetStat(listStats, "LONG");
+    }
 
-        for (Object object : listStats) {
-            Object[] result = (Object[]) object;
-            ItemStatistic itemStatistic = new ItemStatistic((String) result[0], (Double) result[1] );
-            itemStatisticList.add(itemStatistic);
-        }
-        return itemStatisticList;
+    public List<ItemStatistic> getRevenueGroupByBedroomForYear(String year){
+        String query = "SELECT c.libele AS name, " +
+                "COUNT(r) AS mark " +
+                "FROM Reservation r, Chambre c " +
+                " WHERE r.chambre.id = c.id AND DATE_FORMAT(r.date_debut, '%M %Y') LIKE :year" +
+                " GROUP BY  c.libele " ;
+        List<Object> listStats = getSession()
+                .createQuery(query)
+                .setParameter("year", "%" + year + "%")
+                .list();
+
+        return parseResultSetStat(listStats, "LONG");
     }
 
     /**
@@ -68,22 +89,16 @@ public class StatisticDAO extends HibernateDAO<ItemStatistic>{
      */
     public List<ItemStatistic> getTotalClientGroupByMonth(String year){
         String query = "SELECT DATE_FORMAT(r.date_debut, '%M %Y') AS month, " +
-                "SUM(r.total) AS mark, DATE_FORMAT(r.date_debut, '%Y')  " +
+                "SUM(r.total) AS mark" +
                 "FROM Reservation r " +
-                "GROUP BY DATE_FORMAT(r.date_debut, '%M %Y') " +
-                " WHERE DATE_FORMAT(r.date_debut, '%Y') = :year";
+                " WHERE DATE_FORMAT(r.date_debut, '%M %Y') LIKE :year " +
+                "GROUP BY DATE_FORMAT(r.date_debut, '%M %Y') ";
         List<Object> listStats = getSession()
                 .createQuery(query)
-                .setParameter("year", year)
+                .setParameter("year", "%" + year + "%")
                 .list();
-        List<ItemStatistic> itemStatisticList = new ArrayList<ItemStatistic>();
 
-        for (Object object : listStats) {
-            Object[] result = (Object[]) object;
-            ItemStatistic itemStatistic = new ItemStatistic((String) result[0], (Double) result[1] );
-            itemStatisticList.add(itemStatistic);
-        }
-        return itemStatisticList;
+        return parseResultSetStat(listStats, "DOUBLE");
     }
 
     /**
@@ -99,17 +114,7 @@ public class StatisticDAO extends HibernateDAO<ItemStatistic>{
         List<Object> listStats = getSession()
                 .createQuery(query)
                 .list();
-        List<ItemStatistic> itemStatisticList = new ArrayList<ItemStatistic>();
 
-        for (Object object : listStats) {
-            Object[] result = (Object[]) object;
-            ItemStatistic itemStatistic = new ItemStatistic();
-            itemStatistic.setName((String) result[0]);
-            itemStatistic.setMark((Long) result[1]);
-            itemStatisticList.add(itemStatistic);
-        }
-        return itemStatisticList;
+        return parseResultSetStat(listStats, "LONG");
     }
-
-
 }
