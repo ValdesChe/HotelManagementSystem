@@ -5,17 +5,15 @@
 	  xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:ui="http://java.sun.com/jsf/facelets">
 
-	<ui:composition template="../resources/commercialpage.xhtml">
-
+	<ui:composition template="../resources/comptablepage.xhtml">
 		<ui:define name="title">Alpha HOTEL | Statistiques </ui:define>
 		<ui:define name="content">
-
 			<section class="intro-single">
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12 col-lg-8">
 							<div class="title-single-box">
-								<h3 class="title-single">Statistiques de reservation</h3>
+								<h3 class="title-single">Statistiques générales</h3>
 							</div>
 						</div>
 					</div>
@@ -25,37 +23,24 @@
 				<div class="row">
 					<div class="col-md-12 d-inline-flex">
 						<ui:repeat value="#{statisticController.yearsList}" var="yearItem">
-							<div class="card col-md-3" style="">
-								<div class="card-body">
-									<div class="generic_price_tag clearfix">
-										<span class="price">
-											<span class="sign">MAD</span>
-											<span class="currency">
-												<h:outputText value="#{yearItem.name}">
-													<f:convertNumber type="number"
-																	 maxIntegerDigits="5"
-																	 minFractionDigits="0"
-																	 maxFractionDigits="0"/>
-												</h:outputText>
-											</span>
-											<br/>
-											<span class="cent">
-												#{yearItem.mark} Reservations
-											</span>
-										</span>
-									</div>
-
-									<h:form id="frmLogin" class="form-a contactForm">
-										<h:commandButton action="#{statisticController.printFinanceStatPdf(yearItem.name)}" class="btn btn-a mx-auto" value="Imprimer PDF" />
-										<br/>
-										<h:commandButton action="#{statisticController.printFinanceStatExcell(yearItem.name)}" class="btn btn-a mx-auto" value="Imprimer EXCEL"/>
-									</h:form>
+							<div class="p-2 bg-white rounded p-3 m-3 shadow-sm animated flipInX delay-3">
+								<div class="text-uppercase text-tracked text-muted mb-2">
+									Statistiques annuelles
 								</div>
+								<div class="badge badge-success text-size-2 text-monospace mx-auto">
+									#{yearItem.name}  <span class="opacity-50 small" title="#{yearItem.mark} reservation au total pour cette année">#{yearItem.mark}</span>
+								</div>
+								<h:form id="printStats">
+									<h:commandButton action="#{statisticController.printFinanceStatPdf(yearItem.name)}" class="mt-1 btn mx-auto" value="Imprimer PDF" />
+									<br/>
+									<h:commandButton action="#{statisticController.printBedroomStatPdf(yearItem.name)}" class="mt-1 btn mx-auto" value="Imprimer statistiques Chambres  PDF"/>
+									<br/>
+								</h:form>
 							</div>
 						</ui:repeat>
 					</div>
 
-                </div>
+				</div>
 			</div>
 		</ui:define>
 	</ui:composition>

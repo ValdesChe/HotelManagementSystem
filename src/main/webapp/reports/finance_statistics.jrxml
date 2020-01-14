@@ -4,7 +4,10 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<subDataset name="ChartDataset" uuid="ca733987-5862-4392-a087-f9de3f939412">
+	<subDataset name="graphData" uuid="cd7b816b-1f2e-44a4-8066-c405e546bcdc">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
 		<field name="name" class="java.lang.String"/>
 		<field name="mark" class="java.lang.Long"/>
 	</subDataset>
@@ -82,36 +85,38 @@
 		<band height="25" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="270" splitType="Stretch">
-			<bar3DChart>
+		<band height="335" splitType="Stretch">
+			<barChart>
 				<chart evaluationTime="Report">
-					<reportElement x="10" y="0" width="530" height="270" uuid="f5bb7adb-f134-4577-97b8-fc79708139e6"/>
+					<reportElement x="-10" y="40" width="562" height="295" uuid="efb429fa-aa37-465e-bc2b-6ee5aac0ca28"/>
 					<chartTitle/>
 					<chartSubtitle/>
 					<chartLegend/>
 				</chart>
 				<categoryDataset>
 					<dataset resetType="Report">
-						<datasetRun subDataset="ChartDataset" uuid="3312c0b5-3528-4e38-b22e-fb0a4a012c4e"/>
+						<datasetRun subDataset="graphData" uuid="b5de45a2-dff3-479c-9720-fb53e8ff1e51">
+							<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listOfRevenues})]]></dataSourceExpression>
+						</datasetRun>
 					</dataset>
 					<categorySeries>
 						<seriesExpression><![CDATA[$F{name}]]></seriesExpression>
 						<categoryExpression><![CDATA[$F{name}]]></categoryExpression>
 						<valueExpression><![CDATA[$F{mark}]]></valueExpression>
-						<labelExpression><![CDATA[$F{name}+" gets "+$F{mark}]]></labelExpression>
+						<labelExpression><![CDATA[$F{name}]]></labelExpression>
 					</categorySeries>
 				</categoryDataset>
-				<bar3DPlot>
+				<barPlot>
 					<plot/>
 					<itemLabel/>
 					<categoryAxisFormat>
-						<axisFormat/>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
 					</categoryAxisFormat>
 					<valueAxisFormat>
-						<axisFormat/>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
 					</valueAxisFormat>
-				</bar3DPlot>
-			</bar3DChart>
+				</barPlot>
+			</barChart>
 		</band>
 	</detail>
 	<columnFooter>

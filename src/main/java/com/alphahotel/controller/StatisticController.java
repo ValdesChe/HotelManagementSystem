@@ -68,6 +68,35 @@ public class StatisticController extends AbstractController  implements Serializ
         }
     }
 
+    public void printBedroomStatPdf(String year){
+        StatisticDAO statisticDAO = new StatisticDAO();
+        String graphName = "Statistiques par chambre de l'année ".concat(year);
+        List<ItemStatistic> itemStatisticList = statisticDAO.getRevenueGroupByBedroomForYear(year);
+        Statistic statistic = new Statistic(graphName, itemStatisticList);
+        ArrayList<Statistic> statistics = new ArrayList<Statistic>();
+        statistics.add(statistic);
+        beanCollectionDataSource = new JRBeanCollectionDataSource(statistics);
+        parameters = new HashMap<>();
+        parameters.put("IMAGE_PATH",
+                FacesContext.getCurrentInstance().getExternalContext().getRealPath("/resources/images"));
+
+        try {
+            FilePrinterUtil.generateFile("PDF",
+                    "/reports/finance_statistics.jasper",
+                    graphName.concat(".pdf"),
+                    parameters,
+                    beanCollectionDataSource
+            );
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JRException e) {
+            e.printStackTrace();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public void showFinanceStatPdf(String year){
         String graphName = "Finances des reservations de l'année ".concat(year);
         List<ItemStatistic> itemStatisticList = fetchItemStatisticsList(year);

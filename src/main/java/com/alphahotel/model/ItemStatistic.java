@@ -34,4 +34,12 @@ public class ItemStatistic {
     public void setMark(Long mark) {
         this.mark = mark;
     }
+
+    @Override
+    public String toString() {
+        return "ItemStatistic{" +
+                "name='" + name + '\'' +
+                ", mark=" + mark +
+                '}';
+    }
 }
