@@ -32,10 +32,10 @@
 								<div class="badge badge-success text-size-2 text-monospace mx-auto">
 									#{yearItem.name}  <span class="opacity-50 small" title="#{yearItem.mark} reservation au total pour cette année">#{yearItem.mark}</span>
 								</div>
-								<h:form id="printStats" class="form-a">
-									<h:commandButton action="#{statisticController.printFinanceStatPdf(yearItem.name)}" class="mt-1 btn btn-a mx-auto" value="Imprimer PDF" />
+								<h:form id="printStats">
+									<h:commandButton action="#{statisticController.printFinanceStatPdf(yearItem.name)}" class="mt-1 btn mx-auto" value="Imprimer PDF" />
 									<br/>
-									<h:commandButton action="#{statisticController.printBedroomStatPdf(yearItem.name)}" class="mt-1 btn btn-a mx-auto" value="Imprimer statistiques Chambres  PDF"/>
+									<h:commandButton action="#{statisticController.printBedroomStatPdf(yearItem.name)}" class="mt-1 btn mx-auto" value="Imprimer statistiques Chambres  PDF"/>
 									<br/>
 								</h:form>
 							</div>
