@@ -11,7 +11,7 @@
 		<jstl.version>1.2</jstl.version>
 		<mysql.version>5.1.9</mysql.version>
 		<groovy-all.version>1.7.5</groovy-all.version>
-		<hibernate.version>4.0.1.Final</hibernate.version>
+		<hibernate.version>5.4.24.Final</hibernate.version>
 		<slf4j.version>1.6.4</slf4j.version>
 	</properties>
   	<url>http://maven.apache.org</url>
